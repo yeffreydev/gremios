@@ -144,128 +144,156 @@ import { CHAOS_ARENA_MISSIONS, CHAOS_ARENA_RADIO_MISSIONS } from "../types";
     </form>
 </div>
 
-<script>
-    const CHAOS_ARENA_MISSIONS = [
-        "Compra de lotes especiales",
-        "Aumenta el poder total",
-        "Abrir cofre de la feria de artefactos",
-        "Aumentar el poder (artefactos)",
-        "Alcanza Fase 3 （Evento Infierno)",
-        "Tiempo reduce usando velocidad Ups",
-        "Gasta energía cazando monstruos en el mapa del reino",
-        "Usa RES en las etapas de héroe",
-        "Entrenar Soldados",
-        "Enfréntate a Guardianes del Laberinto de Élite/x10",
-        "Encuentro de Guardianes de Laberinto",
-        "Tiempo reducido usando Aceleración de Fusión",
-        "Usa Estrellas Sagradas",
-        "EXP de Monstruito con artículos de EXP (sin Fragmentos)",
-        "Fusionar Pactos",
-        "Usar Fragmentos",
-        "Enfréntate a un Duende Guardián en el Magnate del Reino",
-        "Mata monstruos de nivel 4 o superior",
-        "Fusionar Piedras de Habilidad",
-        "Usa Amuletos",
-        "Usa rollos de estrella de castillo",
-        "Completa misiones de Admin",
-        "Completar misiones de Gremio",
-        "Batallas del Coliseo de héroes",
-        "Forja de Equipo",
-        "Gasta Gemas",
-    ];
+<script is:inline>
+    (function () {
+        const CHAOS_ARENA_MISSIONS = [
+            "Compra de lotes especiales",
+            "Aumenta el poder total",
+            "Abrir cofre de la feria de artefactos",
+            "Aumentar el poder (artefactos)",
+            "Alcanza Fase 3 （Evento Infierno)",
+            "Tiempo reduce usando velocidad Ups",
+            "Gasta energía cazando monstruos en el mapa del reino",
+            "Usa RES en las etapas de héroe",
+            "Entrenar Soldados",
+            "Enfréntate a Guardianes del Laberinto de Élite/x10",
+            "Encuentro de Guardianes de Laberinto",
+            "Tiempo reducido usando Aceleración de Fusión",
+            "Usa Estrellas Sagradas",
+            "EXP de Monstruito con artículos de EXP (sin Fragmentos)",
+            "Fusionar Pactos",
+            "Usar Fragmentos",
+            "Enfréntate a un Duende Guardián en el Magnate del Reino",
+            "Mata monstruos de nivel 4 o superior",
+            "Fusionar Piedras de Habilidad",
+            "Usa Amuletos",
+            "Usa rollos de estrella de castillo",
+            "Completa misiones de Admin",
+            "Completar misiones de Gremio",
+            "Batallas del Coliseo de héroes",
+            "Forja de Equipo",
+            "Gasta Gemas",
+        ];
 
-    const RADIO_MISSIONS = [
-        {
-            key: "recursos_nivel3",
-            label: "Consigue todos los recursos restantes en casillas de recursos de nivel 3 y superior en la Arena del Caos",
-        },
-        {
-            key: "recursos_nivel4",
-            label: "Consigue todos los recursos restantes en casillas de recursos de nivel 4 y superior en la Arena del Caos",
-        },
-        {
-            key: "recursos_nivel5",
-            label: "Consigue todos los recursos restantes en casillas de recursos de nivel 5 y superior en la Arena del Caos",
-        },
-        {
-            key: "monstruos_nivel3",
-            label: "Mata a monstruos de nv. 3 o superior en la Arena del Caos",
-        },
-        {
-            key: "monstruos_nivel4",
-            label: "Mata a monstruos de nv. 4 o superior en la Arena del Caos",
-        },
-        {
-            key: "monstruos_nivel5",
-            label: "Mata a monstruos de nv. 5 o superior en la Arena del Caos",
-        },
-    ];
+        const RADIO_MISSIONS = [
+            {
+                key: "recursos_nivel3",
+                label: "Consigue todos los recursos restantes en casillas de recursos de nivel 3 y superior en la Arena del Caos",
+            },
+            {
+                key: "recursos_nivel4",
+                label: "Consigue todos los recursos restantes en casillas de recursos de nivel 4 y superior en la Arena del Caos",
+            },
+            {
+                key: "recursos_nivel5",
+                label: "Consigue todos los recursos restantes en casillas de recursos de nivel 5 y superior en la Arena del Caos",
+            },
+            {
+                key: "monstruos_nivel3",
+                label: "Mata a monstruos de nv. 3 o superior en la Arena del Caos",
+            },
+            {
+                key: "monstruos_nivel4",
+                label: "Mata a monstruos de nv. 4 o superior en la Arena del Caos",
+            },
+            {
+                key: "monstruos_nivel5",
+                label: "Mata a monstruos de nv. 5 o superior en la Arena del Caos",
+            },
+        ];
 
-    // Handle checkbox toggle
-    document.querySelectorAll(".mission-checkbox").forEach((checkbox) => {
-        checkbox.addEventListener("change", (e) => {
-            const target = e.target as HTMLInputElement;
-            const missionKey = target.dataset.target;
-            const inputs = document.querySelectorAll(
-                `input[name^="${missionKey}_"]`,
-            ) as NodeListOf<HTMLInputElement>;
+        // Wait for DOM to be ready
+        if (document.readyState === "loading") {
+            document.addEventListener("DOMContentLoaded", init);
+        } else {
+            init();
+        }
 
-            inputs.forEach((input) => {
-                if (input.name !== `${missionKey}_enabled`) {
-                    input.disabled = !target.checked;
-                }
+        function init() {
+            // Handle checkbox toggle
+            var checkboxes = document.querySelectorAll(".mission-checkbox");
+            checkboxes.forEach(function (checkbox) {
+                checkbox.addEventListener("change", function (e) {
+                    var target = e.target;
+                    var missionKey = target.dataset.target;
+                    var inputs = document.querySelectorAll(
+                        'input[name^="' + missionKey + '_"]',
+                    );
+
+                    inputs.forEach(function (input) {
+                        if (input.name !== missionKey + "_enabled") {
+                            input.disabled = !target.checked;
+                        }
+                    });
+                });
             });
-        });
-    });
 
-    // Handle submit
-    document.getElementById("submit-btn")?.addEventListener("click", () => {
-        let message = "*EXTRAVAGANTE ARENA DEL CAOS*\n\n";
-        const form = document.getElementById("chaos-form") as HTMLFormElement;
-        const formData = new FormData(form);
+            // Handle submit
+            var submitBtn = document.getElementById("submit-btn");
+            if (submitBtn) {
+                submitBtn.addEventListener("click", function () {
+                    var message = "*EXTRAVAGANTE ARENA DEL CAOS*\\n\\n";
+                    var form = document.getElementById("chaos-form");
+                    var formData = new FormData(form);
 
-        // Part 1: Automatic Search Articles
-        const enabledMissions: string[] = [];
-        CHAOS_ARENA_MISSIONS.forEach((mission, index) => {
-            const missionKey = `mission_${index}`;
-            const enabled = formData.get(`${missionKey}_enabled`) === "on";
+                    // Part 1: Automatic Search Articles
+                    var enabledMissions = [];
+                    CHAOS_ARENA_MISSIONS.forEach(function (mission, index) {
+                        var missionKey = "mission_" + index;
+                        var enabled =
+                            formData.get(missionKey + "_enabled") === "on";
 
-            if (enabled) {
-                const min = formData.get(`${missionKey}_min`) || "0";
-                const max = formData.get(`${missionKey}_max`) || "0";
-                enabledMissions.push(
-                    `• ${mission}\n  Min: ${min} | Max: ${max}`,
-                );
+                        if (enabled) {
+                            var min = formData.get(missionKey + "_min") || "0";
+                            var max = formData.get(missionKey + "_max") || "0";
+                            enabledMissions.push(
+                                "• " +
+                                    mission +
+                                    "\\n  Min: " +
+                                    min +
+                                    " | Max: " +
+                                    max,
+                            );
+                        }
+                    });
+
+                    if (enabledMissions.length > 0) {
+                        message += "*ARTICULOS BUSQUEDA AUTOMATICA*\\n";
+                        message += enabledMissions.join("\\n") + "\\n\\n";
+                    }
+
+                    // Part 2: Radio Missions
+                    var radioAnswers = [];
+                    RADIO_MISSIONS.forEach(function (mission) {
+                        var answer = formData.get(mission.key);
+                        if (answer) {
+                            radioAnswers.push(
+                                "• " +
+                                    mission.label +
+                                    "\\n  Respuesta: " +
+                                    answer.toString().toUpperCase(),
+                            );
+                        }
+                    });
+
+                    if (radioAnswers.length > 0) {
+                        message += "*MISIONES ARENA DEL CAOS*\\n";
+                        message += radioAnswers.join("\\n") + "\\n";
+                    }
+
+                    // Encode message for WhatsApp
+                    var phoneNumber = "5491171277427";
+                    var encodedMessage = encodeURIComponent(message);
+                    var whatsappUrl =
+                        "https://wa.me/" +
+                        phoneNumber +
+                        "?text=" +
+                        encodedMessage;
+
+                    // Open WhatsApp
+                    window.open(whatsappUrl, "_blank");
+                });
             }
-        });
-
-        if (enabledMissions.length > 0) {
-            message += "*ARTICULOS BUSQUEDA AUTOMATICA*\n";
-            message += enabledMissions.join("\n") + "\n\n";
         }
-
-        // Part 2: Radio Missions
-        const radioAnswers: string[] = [];
-        RADIO_MISSIONS.forEach((mission) => {
-            const answer = formData.get(mission.key);
-            if (answer) {
-                radioAnswers.push(
-                    `• ${mission.label}\n  Respuesta: ${answer.toString().toUpperCase()}`,
-                );
-            }
-        });
-
-        if (radioAnswers.length > 0) {
-            message += "*MISIONES ARENA DEL CAOS*\n";
-            message += radioAnswers.join("\n") + "\n";
-        }
-
-        // Encode message for WhatsApp
-        const phoneNumber = "5491171277427";
-        const encodedMessage = encodeURIComponent(message);
-        const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
-
-        // Open WhatsApp
-        window.open(whatsappUrl, "_blank");
-    });
+    })();
 </script>

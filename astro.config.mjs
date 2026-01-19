@@ -6,5 +6,8 @@ export default defineConfig({
     integrations: [
         react(),
         tailwind()
-    ]
+    ],
+    server: {
+        host: true
+    }
 });
