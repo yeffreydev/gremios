@@ -1,11 +1,7 @@
 ---
 interface Props {
   title: string;
-  activePage:
-    | "borrado-fdg"
-    | "misiones-fdg"
-    | "planilla-bot-full"
-    | "chaos-arena";
+  activePage: "borrado-fdg" | "misiones-fdg" | "planilla-bot-full" | "arena";
 }
 
 const { title, activePage } = Astro.props;
@@ -55,10 +51,10 @@ const { title, activePage } = Astro.props;
               Planilla Bot Full
             </a>
             <a
-              href="/chaos-arena"
+              href="/arena"
               class:list={[
                 "tab-button flex-shrink-0",
-                activePage === "chaos-arena" && "tab-button-active",
+                activePage === "arena" && "tab-button-active",
               ]}
             >
               Arena del Caos
