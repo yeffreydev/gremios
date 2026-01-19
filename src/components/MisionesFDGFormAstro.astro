@@ -547,16 +547,16 @@ const getAutomatedBadgeStyles = (status: string | null) => {
                         personalLines.length > 0 ||
                         fdgPersonalLines.length > 0
                     ) {
-                        message += "*MISIONES DE FDG*\\n\\n";
+                        message += "*MISIONES DE FDG*\n\n";
 
                         if (personalLines.length > 0) {
-                            message += "*Borrado Personal*\\n";
-                            message += personalLines.join("\\n") + "\\n\\n";
+                            message += "*Borrado Personal*\n";
+                            message += personalLines.join("\n") + "\n\n";
                         }
 
                         if (fdgPersonalLines.length > 0) {
-                            message += "*FDG Personal*\\n";
-                            message += fdgPersonalLines.join("\\n") + "\\n";
+                            message += "*FDG Personal*\n";
+                            message += fdgPersonalLines.join("\n") + "\n";
                         }
 
                         // Send WhatsApp

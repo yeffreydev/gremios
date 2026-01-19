@@ -976,7 +976,7 @@ import {
         var submitBtn = document.getElementById("submit-btn-bot");
         if (submitBtn) {
             submitBtn.addEventListener("click", function () {
-                var message = "*PLANILLA BOT FULL*\\n\\n";
+                var message = "*PLANILLA BOT FULL*\n\n";
                 var form = document.getElementById("bot-full-form");
                 var formData = new FormData(form);
 
@@ -995,38 +995,37 @@ import {
                 // 1. Account Name
                 var accountName = formData.get("accountName");
                 if (accountName) {
-                    message +=
-                        "*NOMBRE DE LA CUENTA:* " + accountName + "\\n\\n";
+                    message += "*NOMBRE DE LA CUENTA:* " + accountName + "\n\n";
                 }
 
                 // 2. Basic Features
                 var basicFeatures = getAll("basicFeatures");
                 if (basicFeatures.length > 0) {
-                    message += "*BÁSICO - TILDAR LO QUE SÍ HACE:*\\n";
+                    message += "*BÁSICO - TILDAR LO QUE SÍ HACE:*\n";
                     basicFeatures.forEach(function (feature) {
-                        message += "• " + feature + "\\n";
+                        message += "• " + feature + "\n";
                     });
-                    message += "\\n";
+                    message += "\n";
                 }
 
                 // 3. Entry Time
                 var entryTime = getAll("entryTime");
                 if (entryTime.length > 0) {
-                    message += "*TIEMPO DE ENTRADA A CUENTA:*\\n";
+                    message += "*TIEMPO DE ENTRADA A CUENTA:*\n";
                     entryTime.forEach(function (time) {
-                        message += "• " + time + "\\n";
+                        message += "• " + time + "\n";
                     });
-                    message += "\\n";
+                    message += "\n";
                 }
 
                 // 4. Shields
                 var shields = getAll("shields");
                 if (shields.length > 0) {
-                    message += "*ESCUDOS:*\\n";
+                    message += "*ESCUDOS:*\n";
                     shields.forEach(function (shield) {
-                        message += "• " + shield + "\\n";
+                        message += "• " + shield + "\n";
                     });
-                    message += "\\n";
+                    message += "\n";
                 }
 
                 // 5. AntiExplorer
@@ -1035,7 +1034,7 @@ import {
                     message +=
                         "*ANTIEXPLORER:* " +
                         antiExplorer.toUpperCase() +
-                        "\\n\\n";
+                        "\n\n";
                 }
 
                 // 6. Supply to Bank
@@ -1044,7 +1043,7 @@ import {
                     message +=
                         "*SUMINISTRA A ALGÚN BANCO:* " +
                         supplyToBank.toUpperCase() +
-                        "\\n\\n";
+                        "\n\n";
                 }
 
                 // 7. RSS Destination
@@ -1053,17 +1052,17 @@ import {
                     message +=
                         "*NOMBRE DONDE MANDA LOS RSS:* " +
                         rssDestination +
-                        "\\n\\n";
+                        "\n\n";
                 }
 
                 // 8. Illusory Resources
                 var illusoryResources = getAll("illusoryResources");
                 if (illusoryResources.length > 0) {
-                    message += "*REINO ILUSORIO - RECURSOS:*\\n";
+                    message += "*REINO ILUSORIO - RECURSOS:*\n";
                     illusoryResources.forEach(function (res) {
-                        message += "• " + res + "\\n";
+                        message += "• " + res + "\n";
                     });
-                    message += "\\n";
+                    message += "\n";
                 }
 
                 // 9. Illusory Exits
@@ -1072,7 +1071,7 @@ import {
                     message +=
                         "*REINO ILUSORIO - SALIDAS:* " +
                         illusoryExits.join(", ") +
-                        "\\n\\n";
+                        "\n\n";
                 }
 
                 // 10. Illusory Hunting
@@ -1081,17 +1080,17 @@ import {
                     message +=
                         "*CACERÍA REINO ILUSORIO:* " +
                         illusoryHunting.join(", ") +
-                        "\\n\\n";
+                        "\n\n";
                 }
 
                 // 11. Common Resources
                 var commonResources = getAll("commonResources");
                 if (commonResources.length > 0) {
-                    message += "*RECOLECCIÓN REINO COMÚN - RECURSOS:*\\n";
+                    message += "*RECOLECCIÓN REINO COMÚN - RECURSOS:*\n";
                     commonResources.forEach(function (res) {
-                        message += "• " + res + "\\n";
+                        message += "• " + res + "\n";
                     });
-                    message += "\\n";
+                    message += "\n";
                 }
 
                 // 12. Common Exits
@@ -1100,7 +1099,7 @@ import {
                     message +=
                         "*RECOLECCIÓN REINO COMÚN - SALIDAS:* " +
                         commonExits.join(", ") +
-                        "\\n\\n";
+                        "\n\n";
                 }
 
                 // 13. Fortress Level
@@ -1109,7 +1108,7 @@ import {
                     message +=
                         "*FORTALEZAS - NIVEL:* " +
                         fortressLevel.join(", ") +
-                        "\\n\\n";
+                        "\n\n";
                 }
 
                 // 14. Fortress Marches
@@ -1118,17 +1117,17 @@ import {
                     message +=
                         "*FORTALEZAS - MARCHAS:* " +
                         fortressMarches.join(", ") +
-                        "\\n\\n";
+                        "\n\n";
                 }
 
                 // 15. Fortress Troop Type
                 var fortressTroopType = getAll("fortressTroopType");
                 if (fortressTroopType.length > 0) {
-                    message += "*FORTALEZAS - COMO MANDA:*\\n";
+                    message += "*FORTALEZAS - COMO MANDA:*\n";
                     fortressTroopType.forEach(function (type) {
-                        message += "• " + type + "\\n";
+                        message += "• " + type + "\n";
                     });
-                    message += "\\n";
+                    message += "\n";
                 }
 
                 // 16. Ship Exchange
@@ -1137,27 +1136,26 @@ import {
                     message +=
                         "*INTERCAMBIO DE BARCO:* " +
                         shipExchange.toUpperCase() +
-                        "\\n\\n";
+                        "\n\n";
                 }
 
                 // 17. Hero to Improve
                 var heroToImprove = formData.get("heroToImprove");
                 if (heroToImprove) {
-                    message +=
-                        "*HÉROES A MEJORAR:* " + heroToImprove + "\\n\\n";
+                    message += "*HÉROES A MEJORAR:* " + heroToImprove + "\n\n";
                 }
 
                 // 18. Coliseum
                 var coliseum = formData.get("coliseum");
                 if (coliseum) {
                     message +=
-                        "*HACE COLISEO:* " + coliseum.toUpperCase() + "\\n\\n";
+                        "*HACE COLISEO:* " + coliseum.toUpperCase() + "\n\n";
                 }
 
                 // 19. Spam
                 var spam = formData.get("spam");
                 if (spam) {
-                    message += "*HACE SPAM:* " + spam.toUpperCase() + "\\n\\n";
+                    message += "*HACE SPAM:* " + spam.toUpperCase() + "\n\n";
                 }
 
                 // 20. Construction
@@ -1166,37 +1164,37 @@ import {
                     message +=
                         "*CONSTRUCCIÓN:* " +
                         construction.toUpperCase() +
-                        "\\n\\n";
+                        "\n\n";
                 }
 
                 // 21. Construction Priority
                 var constructionPriority = getAll("constructionPriority");
                 if (constructionPriority.length > 0) {
-                    message += "*QUE CONSTRUYE:*\\n";
+                    message += "*QUE CONSTRUYE:*\n";
                     constructionPriority.forEach(function (item) {
-                        message += "• " + item + "\\n";
+                        message += "• " + item + "\n";
                     });
-                    message += "\\n";
+                    message += "\n";
                 }
 
                 // 22. Research
                 var research = getAll("research");
                 if (research.length > 0) {
-                    message += "*INVESTIGACIÓN:*\\n";
+                    message += "*INVESTIGACIÓN:*\n";
                     research.forEach(function (item) {
-                        message += "• " + item + "\\n";
+                        message += "• " + item + "\n";
                     });
-                    message += "\\n";
+                    message += "\n";
                 }
 
                 // 23. Army
                 var army = getAll("army");
                 if (army.length > 0) {
-                    message += "*EJÉRCITO:*\\n";
+                    message += "*EJÉRCITO:*\n";
                     army.forEach(function (troop) {
-                        message += "• " + troop + "\\n";
+                        message += "• " + troop + "\n";
                     });
-                    message += "\\n";
+                    message += "\n";
                 }
 
                 // 24. Luminario Equipment
@@ -1205,68 +1203,67 @@ import {
                     message +=
                         "*HACE EQUIPO LUMINARIO:* " +
                         luminarioEquipment.toUpperCase() +
-                        "\\n\\n";
+                        "\n\n";
                 }
 
                 // 25. Traps
                 var traps = getAll("traps");
                 if (traps.length > 0) {
-                    message += "*HACE TRAMPAS:*\\n";
+                    message += "*HACE TRAMPAS:*\n";
                     traps.forEach(function (trap) {
-                        message += "• " + trap + "\\n";
+                        message += "• " + trap + "\n";
                     });
-                    message += "\\n";
+                    message += "\n";
                 }
 
                 // 26. Hunting
                 var hunting = getAll("hunting");
                 if (hunting.length > 0) {
-                    message += "*CACERÍA:* " + hunting.join(", ") + "\\n\\n";
+                    message += "*CACERÍA:* " + hunting.join(", ") + "\n\n";
                 }
 
                 // 27. Rest Armor
                 var restArmor = formData.get("restArmor");
                 if (restArmor) {
-                    message +=
-                        "*ARMADURA DE DESCANSO:* " + restArmor + "\\n\\n";
+                    message += "*ARMADURA DE DESCANSO:* " + restArmor + "\n\n";
                 }
 
                 // 28. Pacts
                 var pacts = getAll("pacts");
                 if (pacts.length > 0) {
-                    message += "*PACTOS:* " + pacts.join(", ") + "\\n\\n";
+                    message += "*PACTOS:* " + pacts.join(", ") + "\n\n";
                 }
 
                 // 29. Familiars to Train
                 var familiarsToTrain = getAll("familiarsToTrain");
                 if (familiarsToTrain.length > 0) {
-                    message += "*MOUSTRITOS ENTRENA:*\\n";
+                    message += "*MOUSTRITOS ENTRENA:*\n";
                     familiarsToTrain.forEach(function (fam) {
-                        message += "• " + fam + "\\n";
+                        message += "• " + fam + "\n";
                     });
-                    message += "\\n";
+                    message += "\n";
                 }
 
                 // 30. Familiar Skills
                 var familiarSkills = getAll("familiarSkills");
                 if (familiarSkills.length > 0) {
-                    message += "*HABILIDADES DE MOUSTRITOS:*\\n";
+                    message += "*HABILIDADES DE MOUSTRITOS:*\n";
                     familiarSkills.forEach(function (skill) {
-                        message += "• " + skill + "\\n";
+                        message += "• " + skill + "\n";
                     });
-                    message += "\\n";
+                    message += "\n";
                 }
 
                 // 31. Bank
                 var bank = getAll("bank");
                 if (bank.length > 0) {
-                    message += "*BANCO:* " + bank.join(", ") + "\\n\\n";
+                    message += "*BANCO:* " + bank.join(", ") + "\n\n";
                 }
 
                 // 32. Authorized
                 var authorized = formData.get("authorized");
                 if (authorized) {
-                    message += "*AUTORIZADOS:* " + authorized + "\\n\\n";
+                    message += "*AUTORIZADOS:* " + authorized + "\n\n";
                 }
 
                 // 33. White/Black List
@@ -1275,17 +1272,17 @@ import {
                     message +=
                         "*LISTA BLANCA Y NEGRA:* " +
                         whiteBlackList.toUpperCase() +
-                        "\\n\\n";
+                        "\n\n";
                 }
 
                 // 34. Rest Schedule
                 var restSchedule = getAll("restSchedule");
                 if (restSchedule.length > 0) {
-                    message += "*HORARIO DE DESCANSO:*\\n";
+                    message += "*HORARIO DE DESCANSO:*\n";
                     restSchedule.forEach(function (schedule) {
-                        message += "• " + schedule + "\\n";
+                        message += "• " + schedule + "\n";
                     });
-                    message += "\\n";
+                    message += "\n";
                 }
 
                 // 35. Download Files
@@ -1294,7 +1291,7 @@ import {
                     message +=
                         "*DESCARGA ARCHIVOS DE:* " +
                         downloadFiles.join(", ") +
-                        "\\n\\n";
+                        "\n\n";
                 }
 
                 // Send WhatsApp

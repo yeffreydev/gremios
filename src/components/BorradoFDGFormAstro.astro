@@ -382,7 +382,7 @@ const getAutomatedBadgeStyles = (status: string | null) => {
                             comunLines.push(
                                 "• " +
                                     mission.name +
-                                    "\\n  Min: " +
+                                    "\n  Min: " +
                                     min +
                                     " | Max: " +
                                     max,
@@ -391,16 +391,16 @@ const getAutomatedBadgeStyles = (status: string | null) => {
                     });
 
                     if (gremialLines.length > 0 || comunLines.length > 0) {
-                        message += "*BORRADO DE FDG*\\n\\n";
+                        message += "*BORRADO DE FDG*\n\n";
 
                         if (gremialLines.length > 0) {
-                            message += "*Borrado Gremial*\\n";
-                            message += gremialLines.join("\\n") + "\\n\\n";
+                            message += "*Borrado Gremial*\n";
+                            message += gremialLines.join("\n") + "\n\n";
                         }
 
                         if (comunLines.length > 0) {
-                            message += "*FDG Común*\\n";
-                            message += comunLines.join("\\n") + "\\n";
+                            message += "*FDG Común*\n";
+                            message += comunLines.join("\n") + "\n";
                         }
 
                         // Send WhatsApp

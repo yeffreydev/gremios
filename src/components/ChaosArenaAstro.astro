@@ -232,7 +232,7 @@ import { CHAOS_ARENA_MISSIONS, CHAOS_ARENA_RADIO_MISSIONS } from "../types";
             var submitBtn = document.getElementById("submit-btn");
             if (submitBtn) {
                 submitBtn.addEventListener("click", function () {
-                    var message = "*EXTRAVAGANTE ARENA DEL CAOS*\\n\\n";
+                    var message = "*EXTRAVAGANTE ARENA DEL CAOS*\n\n";
                     var form = document.getElementById("chaos-form");
                     var formData = new FormData(form);
 
@@ -249,7 +249,7 @@ import { CHAOS_ARENA_MISSIONS, CHAOS_ARENA_RADIO_MISSIONS } from "../types";
                             enabledMissions.push(
                                 "• " +
                                     mission +
-                                    "\\n  Min: " +
+                                    "\n  Min: " +
                                     min +
                                     " | Max: " +
                                     max,
@@ -258,8 +258,8 @@ import { CHAOS_ARENA_MISSIONS, CHAOS_ARENA_RADIO_MISSIONS } from "../types";
                     });
 
                     if (enabledMissions.length > 0) {
-                        message += "*ARTICULOS BUSQUEDA AUTOMATICA*\\n";
-                        message += enabledMissions.join("\\n") + "\\n\\n";
+                        message += "*ARTICULOS BUSQUEDA AUTOMATICA*\n";
+                        message += enabledMissions.join("\n") + "\n\n";
                     }
 
                     // Part 2: Radio Missions
@@ -270,15 +270,15 @@ import { CHAOS_ARENA_MISSIONS, CHAOS_ARENA_RADIO_MISSIONS } from "../types";
                             radioAnswers.push(
                                 "• " +
                                     mission.label +
-                                    "\\n  Respuesta: " +
+                                    "\n  Respuesta: " +
                                     answer.toString().toUpperCase(),
                             );
                         }
                     });
 
                     if (radioAnswers.length > 0) {
-                        message += "*MISIONES ARENA DEL CAOS*\\n";
-                        message += radioAnswers.join("\\n") + "\\n";
+                        message += "*MISIONES ARENA DEL CAOS*\n";
+                        message += radioAnswers.join("\n") + "\n";
                     }
 
                     // Encode message for WhatsApp
