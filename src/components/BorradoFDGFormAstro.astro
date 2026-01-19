@@ -1,0 +1,420 @@
+---
+import { MISSIONS_FORM1, MISSIONS_FDG_COMUN } from "../types";
+import type { MissionWithStatus } from "../types";
+
+const getAutomatedBadgeStyles = (status: string | null) => {
+    switch (status) {
+        case "SI":
+            return "bg-green-600/20 text-green-300 border-green-500/30";
+        case "NO":
+            return "bg-red-600/20 text-red-300 border-red-500/30";
+        case "PARCIAL":
+            return "bg-yellow-600/20 text-yellow-300 border-yellow-500/30";
+        default:
+            return "";
+    }
+};
+---
+
+<div>
+    <!-- Title -->
+    <div class="mb-6">
+        <h1 class="text-2xl sm:text-3xl font-bold text-white mb-2">
+            BORRADO DE FDG
+        </h1>
+        <p class="text-sm text-white/60">
+            Configure las misiones de borrado y FDG común
+        </p>
+    </div>
+
+    <form id="borrado-form">
+        <div class="space-y-8">
+            <!-- PARTE 1: BORRADO GREMIAL -->
+            <div>
+                <h2
+                    class="text-xl font-bold text-green-400 mb-4 pb-2 border-b border-green-400/30"
+                >
+                    Borrado Gremial
+                </h2>
+                <div class="space-y-3">
+                    {
+                        MISSIONS_FORM1.map((mission, index) => {
+                            const missionKey = `mission_${index}`;
+                            return (
+                                <div class="bg-white/5 border border-white/10 rounded-xl p-4">
+                                    <div class="text-sm sm:text-base text-white mb-3 font-medium">
+                                        {mission}
+                                    </div>
+
+                                    <div class="flex items-end gap-4">
+                                        <div class="flex items-center gap-2 pb-2">
+                                            <input
+                                                type="checkbox"
+                                                id={`check_${missionKey}`}
+                                                name={`${missionKey}_enabled`}
+                                                class="w-4 h-4 rounded border-white/20 bg-white/5 cursor-pointer mission-checkbox"
+                                                data-target={missionKey}
+                                            />
+                                        </div>
+
+                                        <div class="flex-1">
+                                            <label class="text-xs text-gray-300 mb-1 block">
+                                                Puntos mínimos
+                                            </label>
+                                            <input
+                                                type="number"
+                                                name={`${missionKey}_min`}
+                                                min="0"
+                                                max="400"
+                                                placeholder="0"
+                                                disabled
+                                                class="glass-input w-full text-center disabled:opacity-50 disabled:cursor-not-allowed"
+                                            />
+                                        </div>
+
+                                        <div class="flex-1">
+                                            <label class="text-xs text-gray-300 mb-1 block">
+                                                Puntos máximos
+                                            </label>
+                                            <input
+                                                type="number"
+                                                name={`${missionKey}_max`}
+                                                min="0"
+                                                max="400"
+                                                placeholder="0"
+                                                disabled
+                                                class="glass-input w-full text-center disabled:opacity-50 disabled:cursor-not-allowed"
+                                            />
+                                        </div>
+                                    </div>
+                                </div>
+                            );
+                        })
+                    }
+                </div>
+            </div>
+
+            <!-- PARTE 2: FDG COMÚN -->
+            <div>
+                <h2
+                    class="text-xl font-bold text-blue-400 mb-4 pb-2 border-b border-blue-400/30"
+                >
+                    FDG Común
+                </h2>
+                <div class="space-y-3">
+                    {
+                        MISSIONS_FDG_COMUN.map(
+                            (mission: MissionWithStatus, index: number) => {
+                                const missionKey = `comun_${index}`;
+                                return (
+                                    <div class="bg-white/5 border border-white/10 rounded-xl p-4">
+                                        <div class="text-sm sm:text-base text-white font-medium">
+                                            {mission.name}
+                                        </div>
+
+                                        {mission.automated && (
+                                            <div class="mt-1 mb-3">
+                                                <span class="text-xs text-gray-500">
+                                                    ¿Automáticas?
+                                                </span>
+                                                <span
+                                                    class={`ml-2 px-2 py-0.5 rounded text-xs font-semibold border ${getAutomatedBadgeStyles(mission.automated)}`}
+                                                >
+                                                    {mission.automated}
+                                                </span>
+                                            </div>
+                                        )}
+
+                                        <div class="flex items-end gap-4 mt-3">
+                                            <div class="flex items-center gap-2 pb-2">
+                                                <input
+                                                    type="checkbox"
+                                                    id={`check_${missionKey}`}
+                                                    name={`${missionKey}_enabled`}
+                                                    class="w-4 h-4 rounded border-white/20 bg-white/5 cursor-pointer mission-checkbox"
+                                                    data-target={missionKey}
+                                                />
+                                            </div>
+
+                                            <div class="flex-1">
+                                                <label class="text-xs text-gray-300 mb-1 block">
+                                                    Puntos mínimos
+                                                </label>
+                                                <input
+                                                    type="number"
+                                                    name={`${missionKey}_min`}
+                                                    min="0"
+                                                    max="400"
+                                                    placeholder="0"
+                                                    disabled
+                                                    class="glass-input w-full text-center disabled:opacity-50 disabled:cursor-not-allowed"
+                                                />
+                                            </div>
+
+                                            <div class="flex-1">
+                                                <label class="text-xs text-gray-300 mb-1 block">
+                                                    Puntos máximos
+                                                </label>
+                                                <input
+                                                    type="number"
+                                                    name={`${missionKey}_max`}
+                                                    min="0"
+                                                    max="400"
+                                                    placeholder="0"
+                                                    disabled
+                                                    class="glass-input w-full text-center disabled:opacity-50 disabled:cursor-not-allowed"
+                                                />
+                                            </div>
+                                        </div>
+                                    </div>
+                                );
+                            },
+                        )
+                    }
+                </div>
+            </div>
+        </div>
+
+        <!-- Action Button -->
+        <div
+            class="mt-4 sm:mt-6 pt-4 sm:pt-6 border-t border-white/10 flex justify-center sm:justify-end gap-4"
+        >
+            <button
+                type="button"
+                id="submit-btn-borrado"
+                class="glass-button w-full sm:w-auto"
+            >
+                Enviar
+            </button>
+        </div>
+    </form>
+</div>
+
+<script is:inline>
+    (function () {
+        const MISSIONS_FORM1 = [
+            "Enviar ayuda a tus compañeros de gremio",
+            "Batallas del Coliseo de héroes",
+            "Recursos de suministro",
+            "Obtén Esencias Oscuras",
+            "Aumento Poder (Misiones)",
+            "Inv. de Tecnologías",
+            "Entrenar Soldados",
+            "Gasta monedas de gremio",
+            "Completa misiones de Admin",
+            "Completar misiones de Gremio",
+            "Alcanza Fase 3 （Evento Solitario)",
+            "Intercambios de Barco de Carga",
+            "Abre Caja Misteriosa",
+            "Recolectar Recursos",
+            "Gana Batallas de Fortaleza Oscura (Sólo Capitán )",
+            "Conseguir Nvl 19+Esencias Oscuras",
+            "Ataca monstruos",
+            "Completa etapas de héroe",
+            "Aumento Poder (ejércitos héroe)",
+            "Aumenta el poder (tropas)",
+            "Aumento Poder (Edificios)",
+            "Aumento Poder (Investigación)",
+            "Aumenta el poder total",
+            "Tiempo reduce usando velocidad Ups",
+            "Tiempo reducido usando Aceleración de Fusión",
+            "Fusionar Pactos",
+            "Usar Fragmentos",
+            "EXP de Monstruito con artículos EXP (sin Fragmentos)",
+            "Usar hablidades de Ataque de Monstruito",
+            "Consigue el Botín Legendario",
+            "Gasta Gemas",
+            "Usa Estrellas Sagradas",
+            "Encuentro de Guardianes de Laberinto",
+            "Enfréntate a Guardianes del Laberinto de Élite/x10",
+            "Usa Amuletos",
+            "Enfréntate a un Duende Guardián en el Magnate del Reino",
+            "Desbloquea Estrellas del Castillo",
+            "Gasta monedas de artefactos",
+            "Mejora artefactos",
+            "Refuerza artefactos (incluye bendiciones)",
+            "Elabora equipo",
+            "Alcanza Fase 3 （Evento Infierno)",
+            "Top 10 en Eventos del Infierno",
+            "Compra de lotes especiales",
+            "Consigue una misión aleatoria.",
+            "Rank en el TOP 70 para Eventos del Infierno",
+        ];
+
+        const MISSIONS_FDG_COMUN = [
+            {
+                name: "Enviar ayuda a tus compañeros de gremio",
+                automated: "SI",
+            },
+            { name: "Batallas del Coliseo de héroes", automated: "NO" },
+            { name: "Recursos de suministro", automated: "NO" },
+            { name: "Obtén Esencias Oscuras", automated: "PARCIAL" },
+            { name: "Aumento Poder (Misiones)", automated: "NO" },
+            { name: "Inv. de Tecnologías", automated: "NO" },
+            { name: "Entrenar Soldados", automated: "NO" },
+            { name: "Gasta monedas de gremio", automated: "SI" },
+            { name: "Completa misiones de Admin", automated: "SI" },
+            { name: "Completar misiones de Gremio", automated: "SI" },
+            { name: "Alcanza Fase 3 （Evento Solitario)", automated: "NO" },
+            { name: "Intercambios de Barco de Carga", automated: "SI" },
+            { name: "Abre Caja Misteriosa", automated: "SI" },
+            { name: "Recolectar Recursos", automated: "SI" },
+            {
+                name: "Gana Batallas de Fortaleza Oscura (Sólo Capitán)",
+                automated: "NO",
+            },
+            { name: "Conseguir Nvl 19+Esencias Oscuras", automated: "PARCIAL" },
+            { name: "Ataca monstruos", automated: "NO" },
+            { name: "Completa etapas de héroe", automated: "NO" },
+            { name: "Aumento Poder (ejércitos héroe)", automated: "NO" },
+            { name: "Aumenta el poder (tropas)", automated: "NO" },
+            { name: "Aumento Poder (Edificios)", automated: "NO" },
+            { name: "Aumento Poder (Investigación)", automated: "NO" },
+            { name: "Aumenta el poder total", automated: "NO" },
+            { name: "Tiempo reduce usando velocidad Ups", automated: "NO" },
+            {
+                name: "Tiempo reducido usando Aceleración de Fusión",
+                automated: "NO",
+            },
+            { name: "Fusionar Pactos", automated: "NO" },
+            { name: "Usar Fragmentos", automated: "NO" },
+            {
+                name: "EXP de Monstruito con artículos EXP (sin los Fragmentos)",
+                automated: "NO",
+            },
+            {
+                name: "Usar hablidades de Ataque de Monstruito",
+                automated: null,
+            },
+            { name: "Consigue el Botín Legendario", automated: "PARCIAL" },
+            { name: "Gasta Gemas", automated: "NO" },
+            { name: "Usa Estrellas Sagradas", automated: "NO" },
+            { name: "Encuentro de Guardianes de Laberinto", automated: "NO" },
+            {
+                name: "Enfréntate a Guardianes del Laberinto de Élite/x10",
+                automated: null,
+            },
+            { name: "Usa Amuletos", automated: "NO" },
+            {
+                name: "Enfréntate Duende Guardián en Magnate del Reino",
+                automated: "NO",
+            },
+            { name: "Desbloquea Estrellas del Castillo", automated: "NO" },
+            { name: "Gasta monedas de artefactos", automated: "NO" },
+            { name: "Mejora artefactos", automated: "NO" },
+            {
+                name: "Refuerza artefactos (incluye bendiciones)",
+                automated: "NO",
+            },
+            { name: "Elabora equipo", automated: "NO" },
+            { name: "Alcanza Fase 3 （Evento Infierno)", automated: "NO" },
+            { name: "Top 10 en Eventos del Infierno", automated: "NO" },
+            { name: "Compra de lotes especiales", automated: "NO" },
+            { name: "Consigue una misión aleatoria.", automated: "NO" },
+            {
+                name: "Rank en el TOP 70 para Eventos del Infierno",
+                automated: "NO",
+            },
+        ];
+
+        // Wait for DOM
+        if (document.readyState === "loading") {
+            document.addEventListener("DOMContentLoaded", init);
+        } else {
+            init();
+        }
+
+        function init() {
+            // Logic for Checkboxes disabling inputs
+            var checkboxes = document.querySelectorAll(".mission-checkbox");
+            checkboxes.forEach(function (checkbox) {
+                checkbox.addEventListener("change", function (e) {
+                    var target = e.target;
+                    var missionKey = target.dataset.target;
+                    var inputs = document.querySelectorAll(
+                        'input[name^="' + missionKey + '_"]',
+                    );
+
+                    inputs.forEach(function (input) {
+                        if (input.name !== missionKey + "_enabled") {
+                            input.disabled = !target.checked;
+                        }
+                    });
+                });
+            });
+
+            // Submit Logic
+            var submitBtn = document.getElementById("submit-btn-borrado");
+            if (submitBtn) {
+                submitBtn.addEventListener("click", function () {
+                    var message = "";
+                    var form = document.getElementById("borrado-form");
+                    var formData = new FormData(form);
+
+                    // Collect Enabled Missions
+                    var hasData = false;
+
+                    // 1. Borrado Gremial
+                    var gremialLines = [];
+                    MISSIONS_FORM1.forEach(function (mission, index) {
+                        var missionKey = "mission_" + index;
+                        if (formData.get(missionKey + "_enabled") === "on") {
+                            var min = formData.get(missionKey + "_min") || "0";
+                            var max = formData.get(missionKey + "_max") || "0";
+                            gremialLines.push(
+                                "• " +
+                                    mission +
+                                    "\\n  Min: " +
+                                    min +
+                                    " | Max: " +
+                                    max,
+                            );
+                        }
+                    });
+
+                    // 2. FDG Común
+                    var comunLines = [];
+                    MISSIONS_FDG_COMUN.forEach(function (mission, index) {
+                        var missionKey = "comun_" + index;
+                        if (formData.get(missionKey + "_enabled") === "on") {
+                            var min = formData.get(missionKey + "_min") || "0";
+                            var max = formData.get(missionKey + "_max") || "0";
+                            comunLines.push(
+                                "• " +
+                                    mission.name +
+                                    "\\n  Min: " +
+                                    min +
+                                    " | Max: " +
+                                    max,
+                            );
+                        }
+                    });
+
+                    if (gremialLines.length > 0 || comunLines.length > 0) {
+                        message += "*BORRADO DE FDG*\\n\\n";
+
+                        if (gremialLines.length > 0) {
+                            message += "*Borrado Gremial*\\n";
+                            message += gremialLines.join("\\n") + "\\n\\n";
+                        }
+
+                        if (comunLines.length > 0) {
+                            message += "*FDG Común*\\n";
+                            message += comunLines.join("\\n") + "\\n";
+                        }
+
+                        // Send WhatsApp
+                        var phoneNumber = "5491171277427";
+                        var encodedMessage = encodeURIComponent(message);
+                        var whatsappUrl =
+                            "https://wa.me/" +
+                            phoneNumber +
+                            "?text=" +
+                            encodedMessage;
+                        window.open(whatsappUrl, "_blank");
+                    }
+                });
+            }
+        }
+    })();
+</script>

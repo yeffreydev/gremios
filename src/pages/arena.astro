@@ -1,30 +1,9 @@
 ---
 import "../styles/global.css";
+import MainLayout from "../layouts/MainLayout.astro";
 import ChaosArenaAstro from "../components/ChaosArenaAstro.astro";
 ---
 
-<!doctype html>
-<html lang="es-AR">
-    <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-        <title>Arena del Caos</title>
-    </head>
-    <body>
-        <div class="min-h-screen py-4 sm:py-8 px-3 sm:px-4">
-            <div class="max-w-5xl mx-auto">
-                <div class="glass-card p-4 sm:p-6 md:p-8">
-                    <ChaosArenaAstro />
-                </div>
-
-                <!-- Footer Info -->
-                <div
-                    class="mt-4 sm:mt-6 text-center text-xs sm:text-sm text-gray-500"
-                >
-                    <p>Los datos se enviarán por WhatsApp</p>
-                </div>
-            </div>
-        </div>
-    </body>
-</html>
+<MainLayout title="Arena del Caos" activePage="arena">
+    <ChaosArenaAstro />
+</MainLayout>

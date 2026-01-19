@@ -1,0 +1,576 @@
+---
+import { MISSIONS_FORM2, MISSIONS_FDG_PERSONAL } from "../types";
+import type { MissionWithStatus } from "../types";
+
+const getAutomatedBadgeStyles = (status: string | null) => {
+    switch (status) {
+        case "SI":
+            return "bg-green-600/20 text-green-300 border-green-500/30";
+        case "NO":
+            return "bg-red-600/20 text-red-300 border-red-500/30";
+        case "PARCIAL":
+            return "bg-yellow-600/20 text-yellow-300 border-yellow-500/30";
+        default:
+            return "";
+    }
+};
+---
+
+<div>
+    <!-- Title -->
+    <div class="mb-6">
+        <h1 class="text-2xl sm:text-3xl font-bold text-white mb-2">
+            MISIONES DE FDG
+        </h1>
+        <p class="text-sm text-white/60">
+            Configure las misiones personales y bonificaciones
+        </p>
+    </div>
+
+    <form id="misiones-form">
+        <div class="space-y-8">
+            <!-- PARTE 1: BORRADO PERSONAL -->
+            <div>
+                <h2
+                    class="text-xl font-bold text-orange-400 mb-4 pb-2 border-b border-orange-400/30"
+                >
+                    Borrado Personal
+                </h2>
+                <div class="space-y-3">
+                    {
+                        MISSIONS_FORM2.map((mission, index) => {
+                            const missionKey = `personal_${index}`;
+                            return (
+                                <div class="bg-white/5 border border-white/10 rounded-xl p-4">
+                                    <div class="text-sm sm:text-base text-white mb-3 font-medium">
+                                        {mission}
+                                    </div>
+
+                                    {/* 120% Row */}
+                                    <div class="flex items-end gap-4 mb-3">
+                                        <div class="flex items-center gap-2 pb-2">
+                                            <input
+                                                type="checkbox"
+                                                id={`${missionKey}_120`}
+                                                name={`${missionKey}_120_enabled`}
+                                                class="w-4 h-4 rounded border-white/20 bg-white/5 cursor-pointer mission-checkbox"
+                                                data-mission={missionKey}
+                                                data-bonus="120"
+                                            />
+                                            <label
+                                                for={`${missionKey}_120`}
+                                                class="text-sm text-purple-300 cursor-pointer select-none font-medium whitespace-nowrap"
+                                            >
+                                                120%
+                                            </label>
+                                        </div>
+
+                                        <div class="flex-1">
+                                            <label class="text-xs text-gray-300 mb-1 block">
+                                                Puntos mínimos
+                                            </label>
+                                            <input
+                                                type="number"
+                                                name={`${missionKey}_120_min`}
+                                                min="0"
+                                                max="400"
+                                                placeholder="0"
+                                                disabled
+                                                class="glass-input w-full text-center disabled:opacity-50 disabled:cursor-not-allowed"
+                                            />
+                                        </div>
+
+                                        <div class="flex-1">
+                                            <label class="text-xs text-gray-300 mb-1 block">
+                                                Puntos máximos
+                                            </label>
+                                            <input
+                                                type="number"
+                                                name={`${missionKey}_120_max`}
+                                                min="0"
+                                                max="400"
+                                                placeholder="0"
+                                                disabled
+                                                class="glass-input w-full text-center disabled:opacity-50 disabled:cursor-not-allowed"
+                                            />
+                                        </div>
+                                    </div>
+
+                                    {/* 200% Row */}
+                                    <div class="flex items-end gap-4">
+                                        <div class="flex items-center gap-2 pb-2">
+                                            <input
+                                                type="checkbox"
+                                                id={`${missionKey}_200`}
+                                                name={`${missionKey}_200_enabled`}
+                                                class="w-4 h-4 rounded border-white/20 bg-white/5 cursor-pointer mission-checkbox"
+                                                data-mission={missionKey}
+                                                data-bonus="200"
+                                            />
+                                            <label
+                                                for={`${missionKey}_200`}
+                                                class="text-sm text-blue-300 cursor-pointer select-none font-medium whitespace-nowrap"
+                                            >
+                                                200%
+                                            </label>
+                                        </div>
+
+                                        <div class="flex-1">
+                                            <label class="text-xs text-gray-300 mb-1 block">
+                                                Puntos mínimos
+                                            </label>
+                                            <input
+                                                type="number"
+                                                name={`${missionKey}_200_min`}
+                                                min="0"
+                                                max="400"
+                                                placeholder="0"
+                                                disabled
+                                                class="glass-input w-full text-center disabled:opacity-50 disabled:cursor-not-allowed"
+                                            />
+                                        </div>
+
+                                        <div class="flex-1">
+                                            <label class="text-xs text-gray-300 mb-1 block">
+                                                Puntos máximos
+                                            </label>
+                                            <input
+                                                type="number"
+                                                name={`${missionKey}_200_max`}
+                                                min="0"
+                                                max="400"
+                                                placeholder="0"
+                                                disabled
+                                                class="glass-input w-full text-center disabled:opacity-50 disabled:cursor-not-allowed"
+                                            />
+                                        </div>
+                                    </div>
+                                </div>
+                            );
+                        })
+                    }
+                </div>
+            </div>
+
+            <!-- PARTE 2: FDG PERSONAL -->
+            <div>
+                <h2
+                    class="text-xl font-bold text-purple-400 mb-4 pb-2 border-b border-purple-400/30"
+                >
+                    FDG Personal
+                </h2>
+                <div class="space-y-3">
+                    {
+                        MISSIONS_FDG_PERSONAL.map(
+                            (mission: MissionWithStatus, index: number) => {
+                                const missionKey = `personal_fdg_${index}`;
+                                return (
+                                    <div class="bg-white/5 border border-white/10 rounded-xl p-4">
+                                        <div class="text-sm sm:text-base text-white font-medium">
+                                            {mission.name}
+                                        </div>
+
+                                        {mission.automated && (
+                                            <div class="mt-1 mb-3">
+                                                <span class="text-xs text-gray-500">
+                                                    ¿Automáticas?
+                                                </span>
+                                                <span
+                                                    class={`ml-2 px-2 py-0.5 rounded text-xs font-semibold border ${getAutomatedBadgeStyles(mission.automated)}`}
+                                                >
+                                                    {mission.automated}
+                                                </span>
+                                            </div>
+                                        )}
+
+                                        {/* 120% Row */}
+                                        <div class="flex items-end gap-4 mt-3 mb-3">
+                                            <div class="flex items-center gap-2 pb-2">
+                                                <input
+                                                    type="checkbox"
+                                                    id={`${missionKey}_120`}
+                                                    name={`${missionKey}_120_enabled`}
+                                                    class="w-4 h-4 rounded border-white/20 bg-white/5 cursor-pointer mission-checkbox"
+                                                    data-mission={missionKey}
+                                                    data-bonus="120"
+                                                />
+                                                <label
+                                                    for={`${missionKey}_120`}
+                                                    class="text-sm text-purple-300 cursor-pointer select-none font-medium whitespace-nowrap"
+                                                >
+                                                    120%
+                                                </label>
+                                            </div>
+
+                                            <div class="flex-1">
+                                                <label class="text-xs text-gray-300 mb-1 block">
+                                                    Puntos mínimos
+                                                </label>
+                                                <input
+                                                    type="number"
+                                                    name={`${missionKey}_120_min`}
+                                                    min="0"
+                                                    max="400"
+                                                    placeholder="0"
+                                                    disabled
+                                                    class="glass-input w-full text-center disabled:opacity-50 disabled:cursor-not-allowed"
+                                                />
+                                            </div>
+
+                                            <div class="flex-1">
+                                                <label class="text-xs text-gray-300 mb-1 block">
+                                                    Puntos máximos
+                                                </label>
+                                                <input
+                                                    type="number"
+                                                    name={`${missionKey}_120_max`}
+                                                    min="0"
+                                                    max="400"
+                                                    placeholder="0"
+                                                    disabled
+                                                    class="glass-input w-full text-center disabled:opacity-50 disabled:cursor-not-allowed"
+                                                />
+                                            </div>
+                                        </div>
+
+                                        {/* 200% Row */}
+                                        <div class="flex items-end gap-4">
+                                            <div class="flex items-center gap-2 pb-2">
+                                                <input
+                                                    type="checkbox"
+                                                    id={`${missionKey}_200`}
+                                                    name={`${missionKey}_200_enabled`}
+                                                    class="w-4 h-4 rounded border-white/20 bg-white/5 cursor-pointer mission-checkbox"
+                                                    data-mission={missionKey}
+                                                    data-bonus="200"
+                                                />
+                                                <label
+                                                    for={`${missionKey}_200`}
+                                                    class="text-sm text-blue-300 cursor-pointer select-none font-medium whitespace-nowrap"
+                                                >
+                                                    200%
+                                                </label>
+                                            </div>
+
+                                            <div class="flex-1">
+                                                <label class="text-xs text-gray-300 mb-1 block">
+                                                    Puntos mínimos
+                                                </label>
+                                                <input
+                                                    type="number"
+                                                    name={`${missionKey}_200_min`}
+                                                    min="0"
+                                                    max="400"
+                                                    placeholder="0"
+                                                    disabled
+                                                    class="glass-input w-full text-center disabled:opacity-50 disabled:cursor-not-allowed"
+                                                />
+                                            </div>
+
+                                            <div class="flex-1">
+                                                <label class="text-xs text-gray-300 mb-1 block">
+                                                    Puntos máximos
+                                                </label>
+                                                <input
+                                                    type="number"
+                                                    name={`${missionKey}_200_max`}
+                                                    min="0"
+                                                    max="400"
+                                                    placeholder="0"
+                                                    disabled
+                                                    class="glass-input w-full text-center disabled:opacity-50 disabled:cursor-not-allowed"
+                                                />
+                                            </div>
+                                        </div>
+                                    </div>
+                                );
+                            },
+                        )
+                    }
+                </div>
+            </div>
+        </div>
+
+        <!-- Action Button -->
+        <div
+            class="mt-4 sm:mt-6 pt-4 sm:pt-6 border-t border-white/10 flex justify-center sm:justify-end gap-4"
+        >
+            <button
+                type="button"
+                id="submit-btn-misiones"
+                class="glass-button w-full sm:w-auto"
+            >
+                Enviar
+            </button>
+        </div>
+    </form>
+</div>
+
+<script is:inline>
+    (function () {
+        const MISSIONS_FORM2 = [
+            "Enviar ayuda a tus compañeros de gremio",
+            "Batallas del Coliseo de héroes",
+            "Recursos de suministro",
+            "Obtén Esencias Oscuras",
+            "Aumento Poder (Misiones)",
+            "Inv. de Tecnologías",
+            "Entrenar Soldados",
+            "Gasta monedas de gremio",
+            "Completa misiones de Admin",
+            "Completar misiones de Gremio",
+            "Alcanza Fase 3 （Evento Solitario)",
+            "Intercambios de Barco de Carga",
+            "Abre Caja Misteriosa",
+            "Recolectar Recursos",
+            "Gana Batallas de Fortaleza Oscura (Sólo Capitán)",
+            "Conseguir Nvl 19+Esencias Oscuras",
+            "Ataca monstruos",
+            "Completa etapas de héroe",
+            "Aumento Poder (ejércitos héroe)",
+            "Aumenta el poder (tropas)",
+            "Aumento Poder (Edificios)",
+            "Aumento Poder (Investigación)",
+            "Aumenta el poder total",
+            "Tiempo reduce usando velocidad Ups",
+            "Tiempo reducido usando Aceleración de Fusión",
+            "Fusionar Pactos",
+            "Usar Fragmentos",
+            "EXP de Monstruito con artículos EXP (sin Fragmentos)",
+            "Usar hablidades de Ataque de Monstruito",
+            "Consigue el Botín Legendario",
+            "Gasta Gemas",
+            "Usa Estrellas Sagradas",
+            "Encuentro de Guardianes de Laberinto",
+            "Enfréntate a Guardianes del Laberinto de Élite/x10",
+            "Usa Amuletos",
+            "Enfréntate Duende Guardián en el Magnate del Reino",
+            "Desbloquea Estrellas del Castillo",
+            "Gasta monedas de artefactos",
+            "Mejora artefactos",
+            "Refuerza artefactos (incluye bendiciones)",
+            "Elabora equipo",
+            "Alcanza Fase 3 （Evento Infierno)",
+            "Top 10 en Eventos del Infierno",
+            "Compra de lotes especiales",
+            "Consigue una misión aleatoria.",
+            "Rank en el TOP 70 para Eventos del Infierno",
+        ];
+
+        const MISSIONS_FDG_PERSONAL = [
+            {
+                name: "Enviar ayuda a tus compañeros de gremio",
+                automated: "SI",
+            },
+            { name: "Batallas del Coliseo de héroes", automated: "NO" },
+            { name: "Recursos de suministro", automated: "NO" },
+            { name: "Obtén Esencias Oscuras", automated: "PARCIAL" },
+            { name: "Aumento Poder (Misiones)", automated: "NO" },
+            { name: "Inv. de Tecnologías", automated: "NO" },
+            { name: "Entrenar Soldados", automated: "NO" },
+            { name: "Gasta monedas de gremio", automated: "SI" },
+            { name: "Completa misiones de Admin", automated: "SI" },
+            { name: "Completar misiones de Gremio", automated: "SI" },
+            { name: "Alcanza Fase 3 （Evento Solitario)", automated: "NO" },
+            { name: "Intercambios de Barco de Carga", automated: "SI" },
+            { name: "Abre Caja Misteriosa", automated: "SI" },
+            { name: "Recolectar Recursos", automated: "SI" },
+            {
+                name: "Gana Batallas de Fortaleza Oscura (Sólo Capitán)",
+                automated: "NO",
+            },
+            { name: "Conseguir Nvl 19+Esencias Oscuras", automated: "PARCIAL" },
+            { name: "Ataca monstruos", automated: "NO" },
+            { name: "Completa etapas de héroe", automated: "NO" },
+            { name: "Aumento Poder (ejércitos héroe)", automated: "NO" },
+            { name: "Aumenta el poder (tropas)", automated: "NO" },
+            { name: "Aumento Poder (Edificios)", automated: "NO" },
+            { name: "Aumento Poder (Investigación)", automated: "NO" },
+            { name: "Aumenta el poder total", automated: "NO" },
+            { name: "Tiempo reduce usando velocidad Ups", automated: "NO" },
+            {
+                name: "Tiempo reducido usando Aceleración de Fusión",
+                automated: "NO",
+            },
+            { name: "Fusionar Pactos", automated: "NO" },
+            { name: "Usar Fragmentos", automated: "NO" },
+            {
+                name: "EXP de Monstruito con artículos de EXP (sin Fragmentos)",
+                automated: "NO",
+            },
+            {
+                name: "Usar hablidades de Ataque de Monstruito",
+                automated: "NO",
+            },
+            { name: "Consigue el Botín Legendario", automated: "PARCIAL" },
+            { name: "Gasta Gemas", automated: "NO" },
+            { name: "Usa Estrellas Sagradas", automated: "NO" },
+            { name: "Encuentro de Guardianes de Laberinto", automated: "NO" },
+            {
+                name: "Enfréntate a Guardianes del Laberinto de Élite/x10",
+                automated: "NO",
+            },
+            { name: "Usa Amuletos", automated: "NO" },
+            {
+                name: "Enfréntate a un Duende Guardián en el Magnate del Reino",
+                automated: "NO",
+            },
+            { name: "Desbloquea Estrellas del Castillo", automated: "NO" },
+            { name: "Gasta monedas de artefactos", automated: "NO" },
+            { name: "Mejora artefactos", automated: "NO" },
+            {
+                name: "Refuerza artefactos (incluye bendiciones)",
+                automated: "NO",
+            },
+            { name: "Elabora equipo", automated: "NO" },
+            { name: "Alcanza Fase 3 （Evento Infierno)", automated: "NO" },
+            { name: "Top 10 en Eventos del Infierno", automated: "NO" },
+            { name: "Compra de lotes especiales", automated: "NO" },
+            { name: "Consigue una misión aleatoria.", automated: "NO" },
+            {
+                name: "Rank en el TOP 70 para Eventos del Infierno",
+                automated: "NO",
+            },
+        ];
+
+        // Wait for DOM
+        if (document.readyState === "loading") {
+            document.addEventListener("DOMContentLoaded", init);
+        } else {
+            init();
+        }
+
+        function init() {
+            // Checkbox Logic
+            var checkboxes = document.querySelectorAll(".mission-checkbox");
+            checkboxes.forEach(function (checkbox) {
+                checkbox.addEventListener("change", function (e) {
+                    var target = e.target;
+                    var missionKey = target.dataset.mission; // personal_0
+                    var bonus = target.dataset.bonus; // 120 or 200
+
+                    var minInput = document.querySelector(
+                        'input[name="' + missionKey + "_" + bonus + '_min"]',
+                    );
+                    var maxInput = document.querySelector(
+                        'input[name="' + missionKey + "_" + bonus + '_max"]',
+                    );
+
+                    if (minInput) minInput.disabled = !target.checked;
+                    if (maxInput) maxInput.disabled = !target.checked;
+                });
+            });
+
+            // Submit Logic
+            var submitBtn = document.getElementById("submit-btn-misiones");
+            if (submitBtn) {
+                submitBtn.addEventListener("click", function () {
+                    var message = "";
+                    var form = document.getElementById("misiones-form");
+                    var formData = new FormData(form);
+
+                    var hasData = false;
+
+                    // 1. Borrado Personal
+                    var personalLines = [];
+                    MISSIONS_FORM2.forEach(function (mission, index) {
+                        var missionKey = "personal_" + index;
+                        var enabled120 =
+                            formData.get(missionKey + "_120_enabled") === "on";
+                        var enabled200 =
+                            formData.get(missionKey + "_200_enabled") === "on";
+
+                        if (enabled120 || enabled200) {
+                            personalLines.push("• " + mission);
+                            if (enabled120) {
+                                var min =
+                                    formData.get(missionKey + "_120_min") ||
+                                    "0";
+                                var max =
+                                    formData.get(missionKey + "_120_max") ||
+                                    "0";
+                                personalLines.push(
+                                    "  120% - Min: " + min + " | Max: " + max,
+                                );
+                            }
+                            if (enabled200) {
+                                var min =
+                                    formData.get(missionKey + "_200_min") ||
+                                    "0";
+                                var max =
+                                    formData.get(missionKey + "_200_max") ||
+                                    "0";
+                                personalLines.push(
+                                    "  200% - Min: " + min + " | Max: " + max,
+                                );
+                            }
+                        }
+                    });
+
+                    // 2. FDG Personal
+                    var fdgPersonalLines = [];
+                    MISSIONS_FDG_PERSONAL.forEach(function (mission, index) {
+                        var missionKey = "personal_fdg_" + index;
+                        var enabled120 =
+                            formData.get(missionKey + "_120_enabled") === "on";
+                        var enabled200 =
+                            formData.get(missionKey + "_200_enabled") === "on";
+
+                        if (enabled120 || enabled200) {
+                            fdgPersonalLines.push("• " + mission.name);
+                            if (enabled120) {
+                                var min =
+                                    formData.get(missionKey + "_120_min") ||
+                                    "0";
+                                var max =
+                                    formData.get(missionKey + "_120_max") ||
+                                    "0";
+                                fdgPersonalLines.push(
+                                    "  120% - Min: " + min + " | Max: " + max,
+                                );
+                            }
+                            if (enabled200) {
+                                var min =
+                                    formData.get(missionKey + "_200_min") ||
+                                    "0";
+                                var max =
+                                    formData.get(missionKey + "_200_max") ||
+                                    "0";
+                                fdgPersonalLines.push(
+                                    "  200% - Min: " + min + " | Max: " + max,
+                                );
+                            }
+                        }
+                    });
+
+                    if (
+                        personalLines.length > 0 ||
+                        fdgPersonalLines.length > 0
+                    ) {
+                        message += "*MISIONES DE FDG*\\n\\n";
+
+                        if (personalLines.length > 0) {
+                            message += "*Borrado Personal*\\n";
+                            message += personalLines.join("\\n") + "\\n\\n";
+                        }
+
+                        if (fdgPersonalLines.length > 0) {
+                            message += "*FDG Personal*\\n";
+                            message += fdgPersonalLines.join("\\n") + "\\n";
+                        }
+
+                        // Send WhatsApp
+                        var phoneNumber = "5491171277427";
+                        var encodedMessage = encodeURIComponent(message);
+                        var whatsappUrl =
+                            "https://wa.me/" +
+                            phoneNumber +
+                            "?text=" +
+                            encodedMessage;
+                        window.open(whatsappUrl, "_blank");
+                    }
+                });
+            }
+        }
+    })();
+</script>

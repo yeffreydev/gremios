@@ -1,9 +1,9 @@
 ---
 import "../styles/global.css";
 import MainLayout from "../layouts/MainLayout.astro";
-import BorradoFDGForm from "../components/BorradoFDGForm";
+import BorradoFDGFormAstro from "../components/BorradoFDGFormAstro.astro";
 ---
 
 <MainLayout title="Borrado de FDG" activePage="borrado-fdg">
-    <BorradoFDGForm client:only="react" />
+    <BorradoFDGFormAstro />
 </MainLayout>

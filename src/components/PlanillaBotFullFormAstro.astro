@@ -1,0 +1,1309 @@
+---
+import {
+    BASIC_FEATURES,
+    ENTRY_TIMES,
+    SHIELDS,
+    ILLUSORY_RESOURCES,
+    COMMON_RESOURCES,
+    EXITS_1_8,
+    EXITS_WITH_LABEL,
+    LEVELS_1_6,
+    LEVELS_1_5,
+    FORTRESS_TROOP_TYPES,
+    HEROES,
+    CONSTRUCTION_PRIORITIES,
+    RESEARCH_TYPES,
+    ARMY_TYPES,
+    TRAPS,
+    PACTS,
+    FAMILIARS,
+    BANK_TYPES,
+    REST_SCHEDULES,
+    DOWNLOAD_FILES,
+} from "../types";
+---
+
+<div>
+    <!-- Title -->
+    <div class="mb-6">
+        <h1 class="text-2xl sm:text-3xl font-bold text-white mb-2">
+            PLANILLA BOT FULL
+        </h1>
+        <p class="text-sm text-white/60">
+            Complete todos los campos para configurar su bot
+        </p>
+    </div>
+
+    <form id="bot-full-form">
+        <div class="space-y-8">
+            <!-- 1. NOMBRE DE LA CUENTA -->
+            <div class="mb-6">
+                <h3
+                    class="text-base sm:text-lg font-semibold mb-3 text-white/90"
+                >
+                    NOMBRE DE LA CUENTA
+                </h3>
+                <input
+                    type="text"
+                    name="accountName"
+                    placeholder="Ingrese el nombre de la cuenta"
+                    class="w-full px-4 py-2 rounded-lg bg-white/5 border border-white/10 text-white placeholder-white/40 focus:outline-none focus:border-purple-500 focus:ring-2 focus:ring-purple-500/50"
+                />
+            </div>
+
+            <!-- 2. BÁSICO - TILDAR LO QUE SÍ HACE -->
+            <div class="mb-6">
+                <h3
+                    class="text-base sm:text-lg font-semibold mb-3 text-white/90"
+                >
+                    BÁSICO - TILDAR LO QUE SÍ HACE
+                </h3>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                    {
+                        BASIC_FEATURES.map((option) => (
+                            <label class="flex items-start gap-2 p-2 rounded-lg hover:bg-white/5 cursor-pointer transition-colors">
+                                <input
+                                    type="checkbox"
+                                    name="basicFeatures"
+                                    value={option}
+                                    class="mt-1 w-4 h-4 rounded border-white/20 bg-white/5 text-purple-500 focus:ring-2 focus:ring-purple-500"
+                                />
+                                <span class="text-sm text-white/80">
+                                    {option}
+                                </span>
+                            </label>
+                        ))
+                    }
+                </div>
+            </div>
+
+            <!-- 3. TIEMPO DE ENTRADA A CUENTA -->
+            <div class="mb-6">
+                <h3
+                    class="text-base sm:text-lg font-semibold mb-3 text-white/90"
+                >
+                    TIEMPO DE ENTRADA A CUENTA
+                </h3>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                    {
+                        ENTRY_TIMES.map((option) => (
+                            <label class="flex items-start gap-2 p-2 rounded-lg hover:bg-white/5 cursor-pointer transition-colors">
+                                <input
+                                    type="checkbox"
+                                    name="entryTime"
+                                    value={option}
+                                    class="mt-1 w-4 h-4 rounded border-white/20 bg-white/5 text-purple-500 focus:ring-2 focus:ring-purple-500"
+                                />
+                                <span class="text-sm text-white/80">
+                                    {option}
+                                </span>
+                            </label>
+                        ))
+                    }
+                </div>
+            </div>
+
+            <!-- 4. ESCUDOS -->
+            <div class="mb-6">
+                <h3
+                    class="text-base sm:text-lg font-semibold mb-3 text-white/90"
+                >
+                    ESCUDOS
+                </h3>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                    {
+                        SHIELDS.map((option) => (
+                            <label class="flex items-start gap-2 p-2 rounded-lg hover:bg-white/5 cursor-pointer transition-colors">
+                                <input
+                                    type="checkbox"
+                                    name="shields"
+                                    value={option}
+                                    class="mt-1 w-4 h-4 rounded border-white/20 bg-white/5 text-purple-500 focus:ring-2 focus:ring-purple-500"
+                                />
+                                <span class="text-sm text-white/80">
+                                    {option}
+                                </span>
+                            </label>
+                        ))
+                    }
+                </div>
+            </div>
+
+            <!-- 5. ANTIEXPLORER -->
+            <div class="mb-6">
+                <h3
+                    class="text-base sm:text-lg font-semibold mb-3 text-white/90"
+                >
+                    ANTIEXPLORER
+                </h3>
+                <div class="flex gap-4">
+                    <label
+                        class="flex items-center gap-2 p-2 rounded-lg hover:bg-white/5 cursor-pointer transition-colors"
+                    >
+                        <input
+                            type="radio"
+                            name="antiExplorer"
+                            value="yes"
+                            class="w-4 h-4 border-white/20 bg-white/5 text-purple-500 focus:ring-2 focus:ring-purple-500"
+                        />
+                        <span class="text-sm text-white/80">YES</span>
+                    </label>
+                    <label
+                        class="flex items-center gap-2 p-2 rounded-lg hover:bg-white/5 cursor-pointer transition-colors"
+                    >
+                        <input
+                            type="radio"
+                            name="antiExplorer"
+                            value="no"
+                            class="w-4 h-4 border-white/20 bg-white/5 text-purple-500 focus:ring-2 focus:ring-purple-500"
+                        />
+                        <span class="text-sm text-white/80">NO</span>
+                    </label>
+                </div>
+            </div>
+
+            <!-- 6. SUMINISTRA A ALGÚN BANCO -->
+            <div class="mb-6">
+                <h3
+                    class="text-base sm:text-lg font-semibold mb-3 text-white/90"
+                >
+                    SUMINISTRA A ALGÚN BANCO
+                </h3>
+                <div class="flex gap-4">
+                    <label
+                        class="flex items-center gap-2 p-2 rounded-lg hover:bg-white/5 cursor-pointer transition-colors"
+                    >
+                        <input
+                            type="radio"
+                            name="supplyToBank"
+                            value="yes"
+                            class="w-4 h-4 border-white/20 bg-white/5 text-purple-500 focus:ring-2 focus:ring-purple-500"
+                        />
+                        <span class="text-sm text-white/80">YES</span>
+                    </label>
+                    <label
+                        class="flex items-center gap-2 p-2 rounded-lg hover:bg-white/5 cursor-pointer transition-colors"
+                    >
+                        <input
+                            type="radio"
+                            name="supplyToBank"
+                            value="no"
+                            class="w-4 h-4 border-white/20 bg-white/5 text-purple-500 focus:ring-2 focus:ring-purple-500"
+                        />
+                        <span class="text-sm text-white/80">NO</span>
+                    </label>
+                </div>
+            </div>
+
+            <!-- 7. NOMBRE DONDE MANDA LOS RSS -->
+            <div class="mb-6">
+                <h3
+                    class="text-base sm:text-lg font-semibold mb-3 text-white/90"
+                >
+                    NOMBRE DONDE MANDA LOS RSS
+                </h3>
+                <input
+                    type="text"
+                    name="rssDestination"
+                    placeholder="Ingrese el nombre"
+                    class="w-full px-4 py-2 rounded-lg bg-white/5 border border-white/10 text-white placeholder-white/40 focus:outline-none focus:border-purple-500 focus:ring-2 focus:ring-purple-500/50"
+                />
+            </div>
+
+            <!-- 8. REINO ILUSORIO - RECURSOS -->
+            <div class="mb-6">
+                <h3
+                    class="text-base sm:text-lg font-semibold mb-3 text-white/90"
+                >
+                    REINO ILUSORIO - RECURSOS
+                </h3>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                    {
+                        ILLUSORY_RESOURCES.map((option) => (
+                            <label class="flex items-start gap-2 p-2 rounded-lg hover:bg-white/5 cursor-pointer transition-colors">
+                                <input
+                                    type="checkbox"
+                                    name="illusoryResources"
+                                    value={option}
+                                    class="mt-1 w-4 h-4 rounded border-white/20 bg-white/5 text-purple-500 focus:ring-2 focus:ring-purple-500"
+                                />
+                                <span class="text-sm text-white/80">
+                                    {option}
+                                </span>
+                            </label>
+                        ))
+                    }
+                </div>
+            </div>
+
+            <!-- 9. REINO ILUSORIO - SALIDAS -->
+            <div class="mb-6">
+                <h3
+                    class="text-base sm:text-lg font-semibold mb-3 text-white/90"
+                >
+                    REINO ILUSORIO - CUÁNTAS SALIDAS A RECOLECTAR (1-8)
+                </h3>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                    {
+                        EXITS_1_8.map((option) => (
+                            <label class="flex items-start gap-2 p-2 rounded-lg hover:bg-white/5 cursor-pointer transition-colors">
+                                <input
+                                    type="checkbox"
+                                    name="illusoryExits"
+                                    value={option}
+                                    class="mt-1 w-4 h-4 rounded border-white/20 bg-white/5 text-purple-500 focus:ring-2 focus:ring-purple-500"
+                                />
+                                <span class="text-sm text-white/80">
+                                    {option}
+                                </span>
+                            </label>
+                        ))
+                    }
+                </div>
+            </div>
+
+            <!-- 10. CACERÍA REINO ILUSORIO -->
+            <div class="mb-6">
+                <h3
+                    class="text-base sm:text-lg font-semibold mb-3 text-white/90"
+                >
+                    CACERÍA REINO ILUSORIO
+                </h3>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                    {
+                        LEVELS_1_5.map((option) => (
+                            <label class="flex items-start gap-2 p-2 rounded-lg hover:bg-white/5 cursor-pointer transition-colors">
+                                <input
+                                    type="checkbox"
+                                    name="illusoryHunting"
+                                    value={option}
+                                    class="mt-1 w-4 h-4 rounded border-white/20 bg-white/5 text-purple-500 focus:ring-2 focus:ring-purple-500"
+                                />
+                                <span class="text-sm text-white/80">
+                                    {option}
+                                </span>
+                            </label>
+                        ))
+                    }
+                </div>
+            </div>
+
+            <!-- 11. RECOLECCIÓN REINO COMÚN - RECURSOS -->
+            <div class="mb-6">
+                <h3
+                    class="text-base sm:text-lg font-semibold mb-3 text-white/90"
+                >
+                    RECOLECCIÓN REINO COMÚN - RECURSOS
+                </h3>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                    {
+                        COMMON_RESOURCES.map((option) => (
+                            <label class="flex items-start gap-2 p-2 rounded-lg hover:bg-white/5 cursor-pointer transition-colors">
+                                <input
+                                    type="checkbox"
+                                    name="commonResources"
+                                    value={option}
+                                    class="mt-1 w-4 h-4 rounded border-white/20 bg-white/5 text-purple-500 focus:ring-2 focus:ring-purple-500"
+                                />
+                                <span class="text-sm text-white/80">
+                                    {option}
+                                </span>
+                            </label>
+                        ))
+                    }
+                </div>
+            </div>
+
+            <!-- 12. RECOLECCIÓN REINO COMÚN - SALIDAS -->
+            <div class="mb-6">
+                <h3
+                    class="text-base sm:text-lg font-semibold mb-3 text-white/90"
+                >
+                    RECOLECCIÓN REINO COMÚN - CUÁNTAS SALIDAS (1-8)
+                </h3>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                    {
+                        EXITS_WITH_LABEL.map((option) => (
+                            <label class="flex items-start gap-2 p-2 rounded-lg hover:bg-white/5 cursor-pointer transition-colors">
+                                <input
+                                    type="checkbox"
+                                    name="commonExits"
+                                    value={option}
+                                    class="mt-1 w-4 h-4 rounded border-white/20 bg-white/5 text-purple-500 focus:ring-2 focus:ring-purple-500"
+                                />
+                                <span class="text-sm text-white/80">
+                                    {option}
+                                </span>
+                            </label>
+                        ))
+                    }
+                </div>
+            </div>
+
+            <!-- 13. FORTALEZAS - NIVEL -->
+            <div class="mb-6">
+                <h3
+                    class="text-base sm:text-lg font-semibold mb-3 text-white/90"
+                >
+                    FORTALEZAS - NIVEL
+                </h3>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                    {
+                        LEVELS_1_6.map((option) => (
+                            <label class="flex items-start gap-2 p-2 rounded-lg hover:bg-white/5 cursor-pointer transition-colors">
+                                <input
+                                    type="checkbox"
+                                    name="fortressLevel"
+                                    value={option}
+                                    class="mt-1 w-4 h-4 rounded border-white/20 bg-white/5 text-purple-500 focus:ring-2 focus:ring-purple-500"
+                                />
+                                <span class="text-sm text-white/80">
+                                    {option}
+                                </span>
+                            </label>
+                        ))
+                    }
+                </div>
+            </div>
+
+            <!-- 14. FORTALEZAS - MARCHAS -->
+            <div class="mb-6">
+                <h3
+                    class="text-base sm:text-lg font-semibold mb-3 text-white/90"
+                >
+                    FORTALEZAS - CUÁNTAS MARCHAS (1-8)
+                </h3>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                    {
+                        EXITS_1_8.map((option) => (
+                            <label class="flex items-start gap-2 p-2 rounded-lg hover:bg-white/5 cursor-pointer transition-colors">
+                                <input
+                                    type="checkbox"
+                                    name="fortressMarches"
+                                    value={option}
+                                    class="mt-1 w-4 h-4 rounded border-white/20 bg-white/5 text-purple-500 focus:ring-2 focus:ring-purple-500"
+                                />
+                                <span class="text-sm text-white/80">
+                                    {option}
+                                </span>
+                            </label>
+                        ))
+                    }
+                </div>
+            </div>
+
+            <!-- 15. FORTALEZAS - COMO MANDA -->
+            <div class="mb-6">
+                <h3
+                    class="text-base sm:text-lg font-semibold mb-3 text-white/90"
+                >
+                    FORTALEZAS - COMO MANDA
+                </h3>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                    {
+                        FORTRESS_TROOP_TYPES.map((option) => (
+                            <label class="flex items-start gap-2 p-2 rounded-lg hover:bg-white/5 cursor-pointer transition-colors">
+                                <input
+                                    type="checkbox"
+                                    name="fortressTroopType"
+                                    value={option}
+                                    class="mt-1 w-4 h-4 rounded border-white/20 bg-white/5 text-purple-500 focus:ring-2 focus:ring-purple-500"
+                                />
+                                <span class="text-sm text-white/80">
+                                    {option}
+                                </span>
+                            </label>
+                        ))
+                    }
+                </div>
+            </div>
+
+            <!-- 16. INTERCAMBIO DE BARCO -->
+            <div class="mb-6">
+                <h3
+                    class="text-base sm:text-lg font-semibold mb-3 text-white/90"
+                >
+                    INTERCAMBIO DE BARCO
+                </h3>
+                <div class="flex gap-4">
+                    <label
+                        class="flex items-center gap-2 p-2 rounded-lg hover:bg-white/5 cursor-pointer transition-colors"
+                    >
+                        <input
+                            type="radio"
+                            name="shipExchange"
+                            value="yes"
+                            class="w-4 h-4 border-white/20 bg-white/5 text-purple-500 focus:ring-2 focus:ring-purple-500"
+                        />
+                        <span class="text-sm text-white/80">YES</span>
+                    </label>
+                    <label
+                        class="flex items-center gap-2 p-2 rounded-lg hover:bg-white/5 cursor-pointer transition-colors"
+                    >
+                        <input
+                            type="radio"
+                            name="shipExchange"
+                            value="no"
+                            class="w-4 h-4 border-white/20 bg-white/5 text-purple-500 focus:ring-2 focus:ring-purple-500"
+                        />
+                        <span class="text-sm text-white/80">NO</span>
+                    </label>
+                </div>
+            </div>
+
+            <!-- 17. HÉROES A MEJORAR -->
+            <div class="mb-6">
+                <h3
+                    class="text-base sm:text-lg font-semibold mb-3 text-white/90"
+                >
+                    HÉROES A MEJORAR
+                </h3>
+                <select
+                    name="heroToImprove"
+                    class="w-full px-4 py-2 rounded-lg bg-white/5 border border-white/10 text-white focus:outline-none focus:border-purple-500 focus:ring-2 focus:ring-purple-500/50"
+                >
+                    <option value="">Seleccionar...</option>
+                    {
+                        HEROES.map((option) => (
+                            <option value={option} class="bg-gray-800">
+                                {option}
+                            </option>
+                        ))
+                    }
+                </select>
+            </div>
+
+            <!-- 18. HACE COLISEO -->
+            <div class="mb-6">
+                <h3
+                    class="text-base sm:text-lg font-semibold mb-3 text-white/90"
+                >
+                    HACE COLISEO
+                </h3>
+                <div class="flex gap-4">
+                    <label
+                        class="flex items-center gap-2 p-2 rounded-lg hover:bg-white/5 cursor-pointer transition-colors"
+                    >
+                        <input
+                            type="radio"
+                            name="coliseum"
+                            value="yes"
+                            class="w-4 h-4 border-white/20 bg-white/5 text-purple-500 focus:ring-2 focus:ring-purple-500"
+                        />
+                        <span class="text-sm text-white/80">YES</span>
+                    </label>
+                    <label
+                        class="flex items-center gap-2 p-2 rounded-lg hover:bg-white/5 cursor-pointer transition-colors"
+                    >
+                        <input
+                            type="radio"
+                            name="coliseum"
+                            value="no"
+                            class="w-4 h-4 border-white/20 bg-white/5 text-purple-500 focus:ring-2 focus:ring-purple-500"
+                        />
+                        <span class="text-sm text-white/80">NO</span>
+                    </label>
+                </div>
+            </div>
+
+            <!-- 19. HACE SPAM -->
+            <div class="mb-6">
+                <h3
+                    class="text-base sm:text-lg font-semibold mb-3 text-white/90"
+                >
+                    HACE SPAM
+                </h3>
+                <div class="flex gap-4">
+                    <label
+                        class="flex items-center gap-2 p-2 rounded-lg hover:bg-white/5 cursor-pointer transition-colors"
+                    >
+                        <input
+                            type="radio"
+                            name="spam"
+                            value="yes"
+                            class="w-4 h-4 border-white/20 bg-white/5 text-purple-500 focus:ring-2 focus:ring-purple-500"
+                        />
+                        <span class="text-sm text-white/80">YES</span>
+                    </label>
+                    <label
+                        class="flex items-center gap-2 p-2 rounded-lg hover:bg-white/5 cursor-pointer transition-colors"
+                    >
+                        <input
+                            type="radio"
+                            name="spam"
+                            value="no"
+                            class="w-4 h-4 border-white/20 bg-white/5 text-purple-500 focus:ring-2 focus:ring-purple-500"
+                        />
+                        <span class="text-sm text-white/80">NO</span>
+                    </label>
+                </div>
+            </div>
+
+            <!-- 20. CONSTRUCCIÓN -->
+            <div class="mb-6">
+                <h3
+                    class="text-base sm:text-lg font-semibold mb-3 text-white/90"
+                >
+                    CONSTRUCCIÓN
+                </h3>
+                <div class="flex gap-4">
+                    <label
+                        class="flex items-center gap-2 p-2 rounded-lg hover:bg-white/5 cursor-pointer transition-colors"
+                    >
+                        <input
+                            type="radio"
+                            name="construction"
+                            value="yes"
+                            class="w-4 h-4 border-white/20 bg-white/5 text-purple-500 focus:ring-2 focus:ring-purple-500"
+                        />
+                        <span class="text-sm text-white/80">YES</span>
+                    </label>
+                    <label
+                        class="flex items-center gap-2 p-2 rounded-lg hover:bg-white/5 cursor-pointer transition-colors"
+                    >
+                        <input
+                            type="radio"
+                            name="construction"
+                            value="no"
+                            class="w-4 h-4 border-white/20 bg-white/5 text-purple-500 focus:ring-2 focus:ring-purple-500"
+                        />
+                        <span class="text-sm text-white/80">NO</span>
+                    </label>
+                </div>
+            </div>
+
+            <!-- 21. QUE CONSTRUYE -->
+            <div class="mb-6">
+                <h3
+                    class="text-base sm:text-lg font-semibold mb-3 text-white/90"
+                >
+                    QUE CONSTRUYE
+                </h3>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                    {
+                        CONSTRUCTION_PRIORITIES.map((option) => (
+                            <label class="flex items-start gap-2 p-2 rounded-lg hover:bg-white/5 cursor-pointer transition-colors">
+                                <input
+                                    type="checkbox"
+                                    name="constructionPriority"
+                                    value={option}
+                                    class="mt-1 w-4 h-4 rounded border-white/20 bg-white/5 text-purple-500 focus:ring-2 focus:ring-purple-500"
+                                />
+                                <span class="text-sm text-white/80">
+                                    {option}
+                                </span>
+                            </label>
+                        ))
+                    }
+                </div>
+            </div>
+
+            <!-- 22. INVESTIGACIÓN -->
+            <div class="mb-6">
+                <h3
+                    class="text-base sm:text-lg font-semibold mb-3 text-white/90"
+                >
+                    INVESTIGACIÓN
+                </h3>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                    {
+                        RESEARCH_TYPES.map((option) => (
+                            <label class="flex items-start gap-2 p-2 rounded-lg hover:bg-white/5 cursor-pointer transition-colors">
+                                <input
+                                    type="checkbox"
+                                    name="research"
+                                    value={option}
+                                    class="mt-1 w-4 h-4 rounded border-white/20 bg-white/5 text-purple-500 focus:ring-2 focus:ring-purple-500"
+                                />
+                                <span class="text-sm text-white/80">
+                                    {option}
+                                </span>
+                            </label>
+                        ))
+                    }
+                </div>
+            </div>
+
+            <!-- 23. EJÉRCITO -->
+            <div class="mb-6">
+                <h3
+                    class="text-base sm:text-lg font-semibold mb-3 text-white/90"
+                >
+                    EJÉRCITO
+                </h3>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                    {
+                        ARMY_TYPES.map((option) => (
+                            <label class="flex items-start gap-2 p-2 rounded-lg hover:bg-white/5 cursor-pointer transition-colors">
+                                <input
+                                    type="checkbox"
+                                    name="army"
+                                    value={option}
+                                    class="mt-1 w-4 h-4 rounded border-white/20 bg-white/5 text-purple-500 focus:ring-2 focus:ring-purple-500"
+                                />
+                                <span class="text-sm text-white/80">
+                                    {option}
+                                </span>
+                            </label>
+                        ))
+                    }
+                </div>
+            </div>
+
+            <!-- 24. HACE EQUIPO LUMINARIO -->
+            <div class="mb-6">
+                <h3
+                    class="text-base sm:text-lg font-semibold mb-3 text-white/90"
+                >
+                    HACE EQUIPO LUMINARIO
+                </h3>
+                <div class="flex gap-4">
+                    <label
+                        class="flex items-center gap-2 p-2 rounded-lg hover:bg-white/5 cursor-pointer transition-colors"
+                    >
+                        <input
+                            type="radio"
+                            name="luminarioEquipment"
+                            value="yes"
+                            class="w-4 h-4 border-white/20 bg-white/5 text-purple-500 focus:ring-2 focus:ring-purple-500"
+                        />
+                        <span class="text-sm text-white/80">YES</span>
+                    </label>
+                    <label
+                        class="flex items-center gap-2 p-2 rounded-lg hover:bg-white/5 cursor-pointer transition-colors"
+                    >
+                        <input
+                            type="radio"
+                            name="luminarioEquipment"
+                            value="no"
+                            class="w-4 h-4 border-white/20 bg-white/5 text-purple-500 focus:ring-2 focus:ring-purple-500"
+                        />
+                        <span class="text-sm text-white/80">NO</span>
+                    </label>
+                </div>
+            </div>
+
+            <!-- 25. HACE TRAMPAS -->
+            <div class="mb-6">
+                <h3
+                    class="text-base sm:text-lg font-semibold mb-3 text-white/90"
+                >
+                    HACE TRAMPAS
+                </h3>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                    {
+                        TRAPS.map((option) => (
+                            <label class="flex items-start gap-2 p-2 rounded-lg hover:bg-white/5 cursor-pointer transition-colors">
+                                <input
+                                    type="checkbox"
+                                    name="traps"
+                                    value={option}
+                                    class="mt-1 w-4 h-4 rounded border-white/20 bg-white/5 text-purple-500 focus:ring-2 focus:ring-purple-500"
+                                />
+                                <span class="text-sm text-white/80">
+                                    {option}
+                                </span>
+                            </label>
+                        ))
+                    }
+                </div>
+            </div>
+
+            <!-- 26. CACERÍA -->
+            <div class="mb-6">
+                <h3
+                    class="text-base sm:text-lg font-semibold mb-3 text-white/90"
+                >
+                    CACERÍA
+                </h3>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                    {
+                        LEVELS_1_5.map((option) => (
+                            <label class="flex items-start gap-2 p-2 rounded-lg hover:bg-white/5 cursor-pointer transition-colors">
+                                <input
+                                    type="checkbox"
+                                    name="hunting"
+                                    value={option}
+                                    class="mt-1 w-4 h-4 rounded border-white/20 bg-white/5 text-purple-500 focus:ring-2 focus:ring-purple-500"
+                                />
+                                <span class="text-sm text-white/80">
+                                    {option}
+                                </span>
+                            </label>
+                        ))
+                    }
+                </div>
+            </div>
+
+            <!-- 27. Q ARMADURA DE DESCANSO USA -->
+            <div class="mb-6">
+                <h3
+                    class="text-base sm:text-lg font-semibold mb-3 text-white/90"
+                >
+                    Q ARMADURA DE DESCANSO USA
+                </h3>
+                <input
+                    type="text"
+                    name="restArmor"
+                    placeholder="Ingrese el nombre de la armadura"
+                    class="w-full px-4 py-2 rounded-lg bg-white/5 border border-white/10 text-white placeholder-white/40 focus:outline-none focus:border-purple-500 focus:ring-2 focus:ring-purple-500/50"
+                />
+            </div>
+
+            <!-- 28. PACTOS -->
+            <div class="mb-6">
+                <h3
+                    class="text-base sm:text-lg font-semibold mb-3 text-white/90"
+                >
+                    PACTOS
+                </h3>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                    {
+                        PACTS.map((option) => (
+                            <label class="flex items-start gap-2 p-2 rounded-lg hover:bg-white/5 cursor-pointer transition-colors">
+                                <input
+                                    type="checkbox"
+                                    name="pacts"
+                                    value={option}
+                                    class="mt-1 w-4 h-4 rounded border-white/20 bg-white/5 text-purple-500 focus:ring-2 focus:ring-purple-500"
+                                />
+                                <span class="text-sm text-white/80">
+                                    {option}
+                                </span>
+                            </label>
+                        ))
+                    }
+                </div>
+            </div>
+
+            <!-- 29. ¿QUÉ MOUSTRITOS ENTRENA? -->
+            <div class="mb-6">
+                <h3
+                    class="text-base sm:text-lg font-semibold mb-3 text-white/90"
+                >
+                    ¿QUÉ MOUSTRITOS ENTRENA?
+                </h3>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                    {
+                        FAMILIARS.map((option) => (
+                            <label class="flex items-start gap-2 p-2 rounded-lg hover:bg-white/5 cursor-pointer transition-colors">
+                                <input
+                                    type="checkbox"
+                                    name="familiarsToTrain"
+                                    value={option}
+                                    class="mt-1 w-4 h-4 rounded border-white/20 bg-white/5 text-purple-500 focus:ring-2 focus:ring-purple-500"
+                                />
+                                <span class="text-sm text-white/80">
+                                    {option}
+                                </span>
+                            </label>
+                        ))
+                    }
+                </div>
+            </div>
+
+            <!-- 30. HABILIDADES DE MOUSTRITOS -->
+            <div class="mb-6">
+                <h3
+                    class="text-base sm:text-lg font-semibold mb-3 text-white/90"
+                >
+                    HABILIDADES DE MOUSTRITOS
+                </h3>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                    {
+                        FAMILIARS.map((option) => (
+                            <label class="flex items-start gap-2 p-2 rounded-lg hover:bg-white/5 cursor-pointer transition-colors">
+                                <input
+                                    type="checkbox"
+                                    name="familiarSkills"
+                                    value={option}
+                                    class="mt-1 w-4 h-4 rounded border-white/20 bg-white/5 text-purple-500 focus:ring-2 focus:ring-purple-500"
+                                />
+                                <span class="text-sm text-white/80">
+                                    {option}
+                                </span>
+                            </label>
+                        ))
+                    }
+                </div>
+            </div>
+
+            <!-- 31. BANCO -->
+            <div class="mb-6">
+                <h3
+                    class="text-base sm:text-lg font-semibold mb-3 text-white/90"
+                >
+                    BANCO
+                </h3>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                    {
+                        BANK_TYPES.map((option) => (
+                            <label class="flex items-start gap-2 p-2 rounded-lg hover:bg-white/5 cursor-pointer transition-colors">
+                                <input
+                                    type="checkbox"
+                                    name="bank"
+                                    value={option}
+                                    class="mt-1 w-4 h-4 rounded border-white/20 bg-white/5 text-purple-500 focus:ring-2 focus:ring-purple-500"
+                                />
+                                <span class="text-sm text-white/80">
+                                    {option}
+                                </span>
+                            </label>
+                        ))
+                    }
+                </div>
+            </div>
+
+            <!-- 32. AUTORIZADOS -->
+            <div class="mb-6">
+                <h3
+                    class="text-base sm:text-lg font-semibold mb-3 text-white/90"
+                >
+                    AUTORIZADOS (hasta 5 castillos)
+                </h3>
+                <input
+                    type="text"
+                    name="authorized"
+                    placeholder="Nombres separados por comas"
+                    class="w-full px-4 py-2 rounded-lg bg-white/5 border border-white/10 text-white placeholder-white/40 focus:outline-none focus:border-purple-500 focus:ring-2 focus:ring-purple-500/50"
+                />
+            </div>
+
+            <!-- 33. LISTA BLANCA Y NEGRA -->
+            <div class="mb-6">
+                <h3
+                    class="text-base sm:text-lg font-semibold mb-3 text-white/90"
+                >
+                    LISTA BLANCA Y NEGRA
+                </h3>
+                <div class="flex gap-4">
+                    <label
+                        class="flex items-center gap-2 p-2 rounded-lg hover:bg-white/5 cursor-pointer transition-colors"
+                    >
+                        <input
+                            type="radio"
+                            name="whiteBlackList"
+                            value="si"
+                            class="w-4 h-4 border-white/20 bg-white/5 text-purple-500 focus:ring-2 focus:ring-purple-500"
+                        />
+                        <span class="text-sm text-white/80">SÍ</span>
+                    </label>
+                    <label
+                        class="flex items-center gap-2 p-2 rounded-lg hover:bg-white/5 cursor-pointer transition-colors"
+                    >
+                        <input
+                            type="radio"
+                            name="whiteBlackList"
+                            value="no"
+                            class="w-4 h-4 border-white/20 bg-white/5 text-purple-500 focus:ring-2 focus:ring-purple-500"
+                        />
+                        <span class="text-sm text-white/80">NO</span>
+                    </label>
+                </div>
+            </div>
+
+            <!-- 34. HORARIO DE DESCANSO -->
+            <div class="mb-6">
+                <h3
+                    class="text-base sm:text-lg font-semibold mb-3 text-white/90"
+                >
+                    HORARIO DE DESCANSO
+                </h3>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                    {
+                        REST_SCHEDULES.map((option) => (
+                            <label class="flex items-start gap-2 p-2 rounded-lg hover:bg-white/5 cursor-pointer transition-colors">
+                                <input
+                                    type="checkbox"
+                                    name="restSchedule"
+                                    value={option}
+                                    class="mt-1 w-4 h-4 rounded border-white/20 bg-white/5 text-purple-500 focus:ring-2 focus:ring-purple-500"
+                                />
+                                <span class="text-sm text-white/80">
+                                    {option}
+                                </span>
+                            </label>
+                        ))
+                    }
+                </div>
+            </div>
+
+            <!-- 35. DESCARGA ARCHIVOS DE -->
+            <div class="mb-6">
+                <h3
+                    class="text-base sm:text-lg font-semibold mb-3 text-white/90"
+                >
+                    DESCARGA ARCHIVOS DE
+                </h3>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                    {
+                        DOWNLOAD_FILES.map((option) => (
+                            <label class="flex items-start gap-2 p-2 rounded-lg hover:bg-white/5 cursor-pointer transition-colors">
+                                <input
+                                    type="checkbox"
+                                    name="downloadFiles"
+                                    value={option}
+                                    class="mt-1 w-4 h-4 rounded border-white/20 bg-white/5 text-purple-500 focus:ring-2 focus:ring-purple-500"
+                                />
+                                <span class="text-sm text-white/80">
+                                    {option}
+                                </span>
+                            </label>
+                        ))
+                    }
+                </div>
+            </div>
+        </div>
+
+        <!-- Action Button -->
+        <div
+            class="mt-4 sm:mt-6 pt-4 sm:pt-6 border-t border-white/10 flex justify-center sm:justify-end gap-4"
+        >
+            <button
+                type="button"
+                id="submit-btn-bot"
+                class="glass-button w-full sm:w-auto"
+            >
+                Enviar
+            </button>
+        </div>
+    </form>
+</div>
+
+<script is:inline>
+    (function () {
+        // Submit Logic (JavaScript Puro)
+        var submitBtn = document.getElementById("submit-btn-bot");
+        if (submitBtn) {
+            submitBtn.addEventListener("click", function () {
+                var message = "*PLANILLA BOT FULL*\\n\\n";
+                var form = document.getElementById("bot-full-form");
+                var formData = new FormData(form);
+
+                // Helper to get array of values for same-named inputs
+                function getAll(name) {
+                    var values = [];
+                    var inputs = document.querySelectorAll(
+                        'input[name="' + name + '"]:checked',
+                    );
+                    inputs.forEach(function (input) {
+                        values.push(input.value);
+                    });
+                    return values;
+                }
+
+                // 1. Account Name
+                var accountName = formData.get("accountName");
+                if (accountName) {
+                    message +=
+                        "*NOMBRE DE LA CUENTA:* " + accountName + "\\n\\n";
+                }
+
+                // 2. Basic Features
+                var basicFeatures = getAll("basicFeatures");
+                if (basicFeatures.length > 0) {
+                    message += "*BÁSICO - TILDAR LO QUE SÍ HACE:*\\n";
+                    basicFeatures.forEach(function (feature) {
+                        message += "• " + feature + "\\n";
+                    });
+                    message += "\\n";
+                }
+
+                // 3. Entry Time
+                var entryTime = getAll("entryTime");
+                if (entryTime.length > 0) {
+                    message += "*TIEMPO DE ENTRADA A CUENTA:*\\n";
+                    entryTime.forEach(function (time) {
+                        message += "• " + time + "\\n";
+                    });
+                    message += "\\n";
+                }
+
+                // 4. Shields
+                var shields = getAll("shields");
+                if (shields.length > 0) {
+                    message += "*ESCUDOS:*\\n";
+                    shields.forEach(function (shield) {
+                        message += "• " + shield + "\\n";
+                    });
+                    message += "\\n";
+                }
+
+                // 5. AntiExplorer
+                var antiExplorer = formData.get("antiExplorer");
+                if (antiExplorer) {
+                    message +=
+                        "*ANTIEXPLORER:* " +
+                        antiExplorer.toUpperCase() +
+                        "\\n\\n";
+                }
+
+                // 6. Supply to Bank
+                var supplyToBank = formData.get("supplyToBank");
+                if (supplyToBank) {
+                    message +=
+                        "*SUMINISTRA A ALGÚN BANCO:* " +
+                        supplyToBank.toUpperCase() +
+                        "\\n\\n";
+                }
+
+                // 7. RSS Destination
+                var rssDestination = formData.get("rssDestination");
+                if (rssDestination) {
+                    message +=
+                        "*NOMBRE DONDE MANDA LOS RSS:* " +
+                        rssDestination +
+                        "\\n\\n";
+                }
+
+                // 8. Illusory Resources
+                var illusoryResources = getAll("illusoryResources");
+                if (illusoryResources.length > 0) {
+                    message += "*REINO ILUSORIO - RECURSOS:*\\n";
+                    illusoryResources.forEach(function (res) {
+                        message += "• " + res + "\\n";
+                    });
+                    message += "\\n";
+                }
+
+                // 9. Illusory Exits
+                var illusoryExits = getAll("illusoryExits");
+                if (illusoryExits.length > 0) {
+                    message +=
+                        "*REINO ILUSORIO - SALIDAS:* " +
+                        illusoryExits.join(", ") +
+                        "\\n\\n";
+                }
+
+                // 10. Illusory Hunting
+                var illusoryHunting = getAll("illusoryHunting");
+                if (illusoryHunting.length > 0) {
+                    message +=
+                        "*CACERÍA REINO ILUSORIO:* " +
+                        illusoryHunting.join(", ") +
+                        "\\n\\n";
+                }
+
+                // 11. Common Resources
+                var commonResources = getAll("commonResources");
+                if (commonResources.length > 0) {
+                    message += "*RECOLECCIÓN REINO COMÚN - RECURSOS:*\\n";
+                    commonResources.forEach(function (res) {
+                        message += "• " + res + "\\n";
+                    });
+                    message += "\\n";
+                }
+
+                // 12. Common Exits
+                var commonExits = getAll("commonExits");
+                if (commonExits.length > 0) {
+                    message +=
+                        "*RECOLECCIÓN REINO COMÚN - SALIDAS:* " +
+                        commonExits.join(", ") +
+                        "\\n\\n";
+                }
+
+                // 13. Fortress Level
+                var fortressLevel = getAll("fortressLevel");
+                if (fortressLevel.length > 0) {
+                    message +=
+                        "*FORTALEZAS - NIVEL:* " +
+                        fortressLevel.join(", ") +
+                        "\\n\\n";
+                }
+
+                // 14. Fortress Marches
+                var fortressMarches = getAll("fortressMarches");
+                if (fortressMarches.length > 0) {
+                    message +=
+                        "*FORTALEZAS - MARCHAS:* " +
+                        fortressMarches.join(", ") +
+                        "\\n\\n";
+                }
+
+                // 15. Fortress Troop Type
+                var fortressTroopType = getAll("fortressTroopType");
+                if (fortressTroopType.length > 0) {
+                    message += "*FORTALEZAS - COMO MANDA:*\\n";
+                    fortressTroopType.forEach(function (type) {
+                        message += "• " + type + "\\n";
+                    });
+                    message += "\\n";
+                }
+
+                // 16. Ship Exchange
+                var shipExchange = formData.get("shipExchange");
+                if (shipExchange) {
+                    message +=
+                        "*INTERCAMBIO DE BARCO:* " +
+                        shipExchange.toUpperCase() +
+                        "\\n\\n";
+                }
+
+                // 17. Hero to Improve
+                var heroToImprove = formData.get("heroToImprove");
+                if (heroToImprove) {
+                    message +=
+                        "*HÉROES A MEJORAR:* " + heroToImprove + "\\n\\n";
+                }
+
+                // 18. Coliseum
+                var coliseum = formData.get("coliseum");
+                if (coliseum) {
+                    message +=
+                        "*HACE COLISEO:* " + coliseum.toUpperCase() + "\\n\\n";
+                }
+
+                // 19. Spam
+                var spam = formData.get("spam");
+                if (spam) {
+                    message += "*HACE SPAM:* " + spam.toUpperCase() + "\\n\\n";
+                }
+
+                // 20. Construction
+                var construction = formData.get("construction");
+                if (construction) {
+                    message +=
+                        "*CONSTRUCCIÓN:* " +
+                        construction.toUpperCase() +
+                        "\\n\\n";
+                }
+
+                // 21. Construction Priority
+                var constructionPriority = getAll("constructionPriority");
+                if (constructionPriority.length > 0) {
+                    message += "*QUE CONSTRUYE:*\\n";
+                    constructionPriority.forEach(function (item) {
+                        message += "• " + item + "\\n";
+                    });
+                    message += "\\n";
+                }
+
+                // 22. Research
+                var research = getAll("research");
+                if (research.length > 0) {
+                    message += "*INVESTIGACIÓN:*\\n";
+                    research.forEach(function (item) {
+                        message += "• " + item + "\\n";
+                    });
+                    message += "\\n";
+                }
+
+                // 23. Army
+                var army = getAll("army");
+                if (army.length > 0) {
+                    message += "*EJÉRCITO:*\\n";
+                    army.forEach(function (troop) {
+                        message += "• " + troop + "\\n";
+                    });
+                    message += "\\n";
+                }
+
+                // 24. Luminario Equipment
+                var luminarioEquipment = formData.get("luminarioEquipment");
+                if (luminarioEquipment) {
+                    message +=
+                        "*HACE EQUIPO LUMINARIO:* " +
+                        luminarioEquipment.toUpperCase() +
+                        "\\n\\n";
+                }
+
+                // 25. Traps
+                var traps = getAll("traps");
+                if (traps.length > 0) {
+                    message += "*HACE TRAMPAS:*\\n";
+                    traps.forEach(function (trap) {
+                        message += "• " + trap + "\\n";
+                    });
+                    message += "\\n";
+                }
+
+                // 26. Hunting
+                var hunting = getAll("hunting");
+                if (hunting.length > 0) {
+                    message += "*CACERÍA:* " + hunting.join(", ") + "\\n\\n";
+                }
+
+                // 27. Rest Armor
+                var restArmor = formData.get("restArmor");
+                if (restArmor) {
+                    message +=
+                        "*ARMADURA DE DESCANSO:* " + restArmor + "\\n\\n";
+                }
+
+                // 28. Pacts
+                var pacts = getAll("pacts");
+                if (pacts.length > 0) {
+                    message += "*PACTOS:* " + pacts.join(", ") + "\\n\\n";
+                }
+
+                // 29. Familiars to Train
+                var familiarsToTrain = getAll("familiarsToTrain");
+                if (familiarsToTrain.length > 0) {
+                    message += "*MOUSTRITOS ENTRENA:*\\n";
+                    familiarsToTrain.forEach(function (fam) {
+                        message += "• " + fam + "\\n";
+                    });
+                    message += "\\n";
+                }
+
+                // 30. Familiar Skills
+                var familiarSkills = getAll("familiarSkills");
+                if (familiarSkills.length > 0) {
+                    message += "*HABILIDADES DE MOUSTRITOS:*\\n";
+                    familiarSkills.forEach(function (skill) {
+                        message += "• " + skill + "\\n";
+                    });
+                    message += "\\n";
+                }
+
+                // 31. Bank
+                var bank = getAll("bank");
+                if (bank.length > 0) {
+                    message += "*BANCO:* " + bank.join(", ") + "\\n\\n";
+                }
+
+                // 32. Authorized
+                var authorized = formData.get("authorized");
+                if (authorized) {
+                    message += "*AUTORIZADOS:* " + authorized + "\\n\\n";
+                }
+
+                // 33. White/Black List
+                var whiteBlackList = formData.get("whiteBlackList");
+                if (whiteBlackList) {
+                    message +=
+                        "*LISTA BLANCA Y NEGRA:* " +
+                        whiteBlackList.toUpperCase() +
+                        "\\n\\n";
+                }
+
+                // 34. Rest Schedule
+                var restSchedule = getAll("restSchedule");
+                if (restSchedule.length > 0) {
+                    message += "*HORARIO DE DESCANSO:*\\n";
+                    restSchedule.forEach(function (schedule) {
+                        message += "• " + schedule + "\\n";
+                    });
+                    message += "\\n";
+                }
+
+                // 35. Download Files
+                var downloadFiles = getAll("downloadFiles");
+                if (downloadFiles.length > 0) {
+                    message +=
+                        "*DESCARGA ARCHIVOS DE:* " +
+                        downloadFiles.join(", ") +
+                        "\\n\\n";
+                }
+
+                // Send WhatsApp
+                var phoneNumber = "5491171277427";
+                var encodedMessage = encodeURIComponent(message);
+                var whatsappUrl =
+                    "https://wa.me/" + phoneNumber + "?text=" + encodedMessage;
+                window.open(whatsappUrl, "_blank");
+            });
+        }
+    })();
+</script>
