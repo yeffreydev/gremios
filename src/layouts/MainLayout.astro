@@ -1,0 +1,79 @@
+---
+interface Props {
+  title: string;
+  activePage:
+    | "borrado-fdg"
+    | "misiones-fdg"
+    | "planilla-bot-full"
+    | "chaos-arena";
+}
+
+const { title, activePage } = Astro.props;
+---
+
+<!doctype html>
+<html lang="es-AR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <title>{title}</title>
+  </head>
+  <body>
+    <div class="min-h-screen py-4 sm:py-8 px-3 sm:px-4">
+      <div class="max-w-5xl mx-auto">
+        <div class="glass-card p-4 sm:p-6 md:p-8">
+          <!-- Navigation -->
+          <nav
+            class="flex gap-2 mb-4 sm:mb-6 border-b border-white/10 pb-3 sm:pb-4 overflow-x-auto"
+          >
+            <a
+              href="/borrado-fdg"
+              class:list={[
+                "tab-button flex-shrink-0",
+                activePage === "borrado-fdg" && "tab-button-active",
+              ]}
+            >
+              Formulario Borrado de FDG
+            </a>
+            <a
+              href="/misiones-fdg"
+              class:list={[
+                "tab-button flex-shrink-0",
+                activePage === "misiones-fdg" && "tab-button-active",
+              ]}
+            >
+              Formulario Misiones de FDG
+            </a>
+            <a
+              href="/planilla-bot-full"
+              class:list={[
+                "tab-button flex-shrink-0",
+                activePage === "planilla-bot-full" && "tab-button-active",
+              ]}
+            >
+              Planilla Bot Full
+            </a>
+            <a
+              href="/chaos-arena"
+              class:list={[
+                "tab-button flex-shrink-0",
+                activePage === "chaos-arena" && "tab-button-active",
+              ]}
+            >
+              Arena del Caos
+            </a>
+          </nav>
+
+          <!-- Content -->
+          <slot />
+        </div>
+
+        <!-- Footer Info -->
+        <div class="mt-4 sm:mt-6 text-center text-xs sm:text-sm text-gray-500">
+          <p>Los datos se enviarán por WhatsApp</p>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
