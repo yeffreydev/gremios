@@ -1,0 +1,9 @@
+---
+import "../styles/global.css";
+import MainLayout from "../layouts/MainLayout.astro";
+import MisionesFDGForm from "../components/MisionesFDGForm";
+---
+
+<MainLayout title="Misiones de FDG" activePage="misiones-fdg">
+    <MisionesFDGForm client:only="react" />
+</MainLayout>

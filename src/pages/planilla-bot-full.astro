@@ -1,0 +1,9 @@
+---
+import "../styles/global.css";
+import MainLayout from "../layouts/MainLayout.astro";
+import PlanillaBotFullForm from "../components/PlanillaBotFullForm";
+---
+
+<MainLayout title="Planilla Bot Full" activePage="planilla-bot-full">
+    <PlanillaBotFullForm client:only="react" />
+</MainLayout>

@@ -28,10 +28,10 @@ import { CHAOS_ARENA_MISSIONS, CHAOS_ARENA_RADIO_MISSIONS } from "../types";
                             const missionKey = `mission_${index}`;
                             return (
                                 <div
-                                    class="glass-card p-4"
+                                    class="bg-white/5 border border-white/10 rounded-xl p-4"
                                     data-mission={missionKey}
                                 >
-                                    <div class="text-sm sm:text-base text-gray-200 mb-3 font-medium">
+                                    <div class="text-sm sm:text-base text-white mb-3 font-medium">
                                         {mission}
                                     </div>
 
@@ -93,8 +93,8 @@ import { CHAOS_ARENA_MISSIONS, CHAOS_ARENA_RADIO_MISSIONS } from "../types";
                 <div class="space-y-3">
                     {
                         CHAOS_ARENA_RADIO_MISSIONS.map((mission) => (
-                            <div class="glass-card p-4">
-                                <div class="text-sm sm:text-base text-gray-200 mb-3 font-medium">
+                            <div class="bg-white/5 border border-white/10 rounded-xl p-4">
+                                <div class="text-sm sm:text-base text-white mb-3 font-medium">
                                     {mission.label}
                                 </div>
 
