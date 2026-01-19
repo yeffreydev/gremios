@@ -1,0 +1,271 @@
+---
+import { CHAOS_ARENA_MISSIONS, CHAOS_ARENA_RADIO_MISSIONS } from "../types";
+---
+
+<div>
+    <!-- Title -->
+    <div class="mb-6">
+        <h1 class="text-2xl sm:text-3xl font-bold text-white mb-2">
+            EXTRAVAGANTE ARENA DEL CAOS
+        </h1>
+        <p class="text-sm text-white/60">
+            Configure las búsquedas automáticas y misiones de la arena
+        </p>
+    </div>
+
+    <form id="chaos-form">
+        <div class="space-y-8">
+            <!-- Part 1: ARTICULOS BUSQUEDA AUTOMATICA -->
+            <div>
+                <h2
+                    class="text-xl font-bold text-purple-400 mb-4 pb-2 border-b border-purple-400/30"
+                >
+                    ARTICULOS BUSQUEDA AUTOMATICA
+                </h2>
+                <div class="space-y-3">
+                    {
+                        CHAOS_ARENA_MISSIONS.map((mission, index) => {
+                            const missionKey = `mission_${index}`;
+                            return (
+                                <div
+                                    class="glass-card p-4"
+                                    data-mission={missionKey}
+                                >
+                                    <div class="text-sm sm:text-base text-gray-200 mb-3 font-medium">
+                                        {mission}
+                                    </div>
+
+                                    <div class="flex items-end gap-4">
+                                        <div class="flex items-center gap-2 pb-2">
+                                            <input
+                                                type="checkbox"
+                                                id={`check_${missionKey}`}
+                                                name={`${missionKey}_enabled`}
+                                                class="w-4 h-4 rounded border-white/20 bg-white/5 cursor-pointer mission-checkbox"
+                                                data-target={missionKey}
+                                            />
+                                        </div>
+
+                                        <div class="flex-1">
+                                            <label class="text-xs text-gray-300 mb-1 block">
+                                                Puntos mínimos
+                                            </label>
+                                            <input
+                                                type="number"
+                                                name={`${missionKey}_min`}
+                                                min="0"
+                                                max="400"
+                                                placeholder="0"
+                                                disabled
+                                                class="glass-input w-full text-center disabled:opacity-50 disabled:cursor-not-allowed mission-input"
+                                            />
+                                        </div>
+
+                                        <div class="flex-1">
+                                            <label class="text-xs text-gray-300 mb-1 block">
+                                                Puntos máximos
+                                            </label>
+                                            <input
+                                                type="number"
+                                                name={`${missionKey}_max`}
+                                                min="0"
+                                                max="400"
+                                                placeholder="0"
+                                                disabled
+                                                class="glass-input w-full text-center disabled:opacity-50 disabled:cursor-not-allowed mission-input"
+                                            />
+                                        </div>
+                                    </div>
+                                </div>
+                            );
+                        })
+                    }
+                </div>
+            </div>
+
+            <!-- Part 2: Radio Missions -->
+            <div>
+                <h2
+                    class="text-xl font-bold text-cyan-400 mb-4 pb-2 border-b border-cyan-400/30"
+                >
+                    MISIONES ARENA DEL CAOS
+                </h2>
+                <div class="space-y-3">
+                    {
+                        CHAOS_ARENA_RADIO_MISSIONS.map((mission) => (
+                            <div class="glass-card p-4">
+                                <div class="text-sm sm:text-base text-gray-200 mb-3 font-medium">
+                                    {mission.label}
+                                </div>
+
+                                <div class="flex gap-4">
+                                    <label class="flex items-center gap-2 px-3 py-2 cursor-pointer">
+                                        <input
+                                            type="radio"
+                                            name={mission.key}
+                                            value="si"
+                                            class="w-4 h-4"
+                                        />
+                                        <span class="text-sm text-gray-200 font-medium">
+                                            SÍ
+                                        </span>
+                                    </label>
+                                    <label class="flex items-center gap-2 px-3 py-2 cursor-pointer">
+                                        <input
+                                            type="radio"
+                                            name={mission.key}
+                                            value="no"
+                                            class="w-4 h-4"
+                                        />
+                                        <span class="text-sm text-gray-200 font-medium">
+                                            NO
+                                        </span>
+                                    </label>
+                                </div>
+                            </div>
+                        ))
+                    }
+                </div>
+            </div>
+        </div>
+
+        <!-- Action Button -->
+        <div
+            class="mt-4 sm:mt-6 pt-4 sm:pt-6 border-t border-white/10 flex justify-center sm:justify-end gap-4"
+        >
+            <button
+                type="button"
+                id="submit-btn"
+                class="glass-button w-full sm:w-auto"
+            >
+                Enviar
+            </button>
+        </div>
+    </form>
+</div>
+
+<script>
+    const CHAOS_ARENA_MISSIONS = [
+        "Compra de lotes especiales",
+        "Aumenta el poder total",
+        "Abrir cofre de la feria de artefactos",
+        "Aumentar el poder (artefactos)",
+        "Alcanza Fase 3 （Evento Infierno)",
+        "Tiempo reduce usando velocidad Ups",
+        "Gasta energía cazando monstruos en el mapa del reino",
+        "Usa RES en las etapas de héroe",
+        "Entrenar Soldados",
+        "Enfréntate a Guardianes del Laberinto de Élite/x10",
+        "Encuentro de Guardianes de Laberinto",
+        "Tiempo reducido usando Aceleración de Fusión",
+        "Usa Estrellas Sagradas",
+        "EXP de Monstruito con artículos de EXP (sin Fragmentos)",
+        "Fusionar Pactos",
+        "Usar Fragmentos",
+        "Enfréntate a un Duende Guardián en el Magnate del Reino",
+        "Mata monstruos de nivel 4 o superior",
+        "Fusionar Piedras de Habilidad",
+        "Usa Amuletos",
+        "Usa rollos de estrella de castillo",
+        "Completa misiones de Admin",
+        "Completar misiones de Gremio",
+        "Batallas del Coliseo de héroes",
+        "Forja de Equipo",
+        "Gasta Gemas",
+    ];
+
+    const RADIO_MISSIONS = [
+        {
+            key: "recursos_nivel3",
+            label: "Consigue todos los recursos restantes en casillas de recursos de nivel 3 y superior en la Arena del Caos",
+        },
+        {
+            key: "recursos_nivel4",
+            label: "Consigue todos los recursos restantes en casillas de recursos de nivel 4 y superior en la Arena del Caos",
+        },
+        {
+            key: "recursos_nivel5",
+            label: "Consigue todos los recursos restantes en casillas de recursos de nivel 5 y superior en la Arena del Caos",
+        },
+        {
+            key: "monstruos_nivel3",
+            label: "Mata a monstruos de nv. 3 o superior en la Arena del Caos",
+        },
+        {
+            key: "monstruos_nivel4",
+            label: "Mata a monstruos de nv. 4 o superior en la Arena del Caos",
+        },
+        {
+            key: "monstruos_nivel5",
+            label: "Mata a monstruos de nv. 5 o superior en la Arena del Caos",
+        },
+    ];
+
+    // Handle checkbox toggle
+    document.querySelectorAll(".mission-checkbox").forEach((checkbox) => {
+        checkbox.addEventListener("change", (e) => {
+            const target = e.target as HTMLInputElement;
+            const missionKey = target.dataset.target;
+            const inputs = document.querySelectorAll(
+                `input[name^="${missionKey}_"]`,
+            ) as NodeListOf<HTMLInputElement>;
+
+            inputs.forEach((input) => {
+                if (input.name !== `${missionKey}_enabled`) {
+                    input.disabled = !target.checked;
+                }
+            });
+        });
+    });
+
+    // Handle submit
+    document.getElementById("submit-btn")?.addEventListener("click", () => {
+        let message = "*EXTRAVAGANTE ARENA DEL CAOS*\n\n";
+        const form = document.getElementById("chaos-form") as HTMLFormElement;
+        const formData = new FormData(form);
+
+        // Part 1: Automatic Search Articles
+        const enabledMissions: string[] = [];
+        CHAOS_ARENA_MISSIONS.forEach((mission, index) => {
+            const missionKey = `mission_${index}`;
+            const enabled = formData.get(`${missionKey}_enabled`) === "on";
+
+            if (enabled) {
+                const min = formData.get(`${missionKey}_min`) || "0";
+                const max = formData.get(`${missionKey}_max`) || "0";
+                enabledMissions.push(
+                    `• ${mission}\n  Min: ${min} | Max: ${max}`,
+                );
+            }
+        });
+
+        if (enabledMissions.length > 0) {
+            message += "*ARTICULOS BUSQUEDA AUTOMATICA*\n";
+            message += enabledMissions.join("\n") + "\n\n";
+        }
+
+        // Part 2: Radio Missions
+        const radioAnswers: string[] = [];
+        RADIO_MISSIONS.forEach((mission) => {
+            const answer = formData.get(mission.key);
+            if (answer) {
+                radioAnswers.push(
+                    `• ${mission.label}\n  Respuesta: ${answer.toString().toUpperCase()}`,
+                );
+            }
+        });
+
+        if (radioAnswers.length > 0) {
+            message += "*MISIONES ARENA DEL CAOS*\n";
+            message += radioAnswers.join("\n") + "\n";
+        }
+
+        // Encode message for WhatsApp
+        const phoneNumber = "5491171277427";
+        const encodedMessage = encodeURIComponent(message);
+        const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
+
+        // Open WhatsApp
+        window.open(whatsappUrl, "_blank");
+    });
+</script>

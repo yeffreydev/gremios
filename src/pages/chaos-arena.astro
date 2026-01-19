@@ -1,9 +1,9 @@
 ---
 import "../styles/global.css";
 import MainLayout from "../layouts/MainLayout.astro";
-import ChaosArenaFormComponent from "../components/ChaosArenaFormComponent";
+import ChaosArenaAstro from "../components/ChaosArenaAstro.astro";
 ---
 
 <MainLayout title="Arena del Caos" activePage="chaos-arena">
-    <ChaosArenaFormComponent client:only="react" />
+    <ChaosArenaAstro />
 </MainLayout>
